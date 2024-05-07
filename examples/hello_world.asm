@@ -1,4 +1,4 @@
-section .rodata:
+section .data:
     hello: "Hello world!", 0
     pointer: hello
 

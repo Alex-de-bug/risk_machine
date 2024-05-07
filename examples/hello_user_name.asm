@@ -1,4 +1,4 @@
-section .rodata:
+section .data:
     what: "What's your name?", 10, 0
     hello: "Hello, "
     buffer: resb 32
