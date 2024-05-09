@@ -15,30 +15,38 @@ class Opcode(str, enum.Enum):
     STORE = "store"  # Сохранение значения из регистра в память
 
     ADD = "add"  # Сложение
-    SUB = "subtract"  # Вычитание
-    MOD = "modulus"  # Остаток от деления
-    INC = "increment"  # Увеличение на единицу
-    CMP = "compare"  # Сравнение
+    SUB = "sub"  # Вычитание
+    MOD = "mod"  # Остаток от деления
+    INC = "inc"  # Увеличение на единицу
+    CMP = "cmp"  # Сравнение
 
-    DI = "disable_interrupts"  # Отключение прерываний
-    EI = "enable_interrupts"  # Включение прерываний
-    IN = "input"  # Ввод данных из внешнего порта
-    OUT = "output"  # Вывод данных во внешний порт
+    DI = "di"  # Отключение прерываний
+    EI = "ei"  # Включение прерываний
+    IN = "in"  # Ввод данных из внешнего порта
+    OUT = "out"  # Вывод данных во внешний порт
 
-    JZ = "jump_if_zero"  # Переход, если флаг нуля
-    JNZ = "jump_if_not_zero"  # Переход, если нет флага нуля
-    JMP = "jump"  # Безусловный переход
+    JZ = "jz"  # Переход, если флаг нуля
+    JNZ = "jnz"  # Переход, если нет флага нуля
+    JMP = "jmp"  # Безусловный переход
 
     MOVE = "move"  # Перемещение данных между регистрами
 
     HALT = "halt"  # Остановка выполнения программы
 
+    IRET = "iret"  # Остановка выполнения программы
+
     def __str__(self):
         """`Opcode.INC` - `increment`."""
         return str(self.value)
 
-class Term(namedtuple("Term", "line pos symbol")):
-    """Сделано через класс, чтобы был docstring."""
+
+class Term(namedtuple("Term", "index typeAddr")):
+    """ Тип может быть:
+            0 - прямая
+            1 - косвенная
+            2 - регистр
+            3 - безадрессная
+    """
 
 
 def write_code(filename, code):
@@ -62,6 +70,6 @@ def read_code(filename):
         # Конвертация списка term в класс Term
         if "term" in instr:
             assert len(instr["term"]) == 3
-            instr["term"] = Term(instr["term"][0], instr["term"][1], instr["term"][2])
+            instr["term"] = Term(instr["term"][0])
 
     return code

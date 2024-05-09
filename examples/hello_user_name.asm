@@ -1,7 +1,7 @@
 section .data:
-    what: "What's your name?", 10, 0
+    what: "What's your name???", 0
     hello: "Hello, "
-    buffer: resb 32
+    buffer: resb 5
     pointer: what
     buf_pointer: buffer
 
