@@ -46,6 +46,7 @@ class Term(namedtuple("Term", "index typeAddr")):
             1 - косвенная
             2 - регистр
             3 - безадрессная
+            4 - портовая адресация
     """
 
 
