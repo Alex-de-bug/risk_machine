@@ -40,7 +40,7 @@ class Opcode(str, enum.Enum):
         return str(self.value)
 
 
-class Term(namedtuple("Term", "index typeAddr")):
+class Term(namedtuple("Term", "index related_label")):
     """ Тип может быть:
             0 - прямая
             1 - косвенная
@@ -65,12 +65,13 @@ def read_code(filename):
         code = json.loads(file.read())
 
     for instr in code:
-        # Конвертация строки в Opcode
-        instr["opcode"] = Opcode(instr["opcode"])
+        if "opcode" in instr:
+            instr["opcode"] = Opcode(instr["opcode"])
+
 
         # Конвертация списка term в класс Term
         if "term" in instr:
-            assert len(instr["term"]) == 3
-            instr["term"] = Term(instr["term"][0])
+            assert len(instr["term"]) == 2
+            instr["term"] = Term(instr["term"][0], instr["term"][1])
 
     return code

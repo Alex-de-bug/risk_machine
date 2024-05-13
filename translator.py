@@ -100,46 +100,46 @@ def translate_to_machine_word(labels: Dict[str, int], lines: List[str]) -> List[
                 num_first_reg = int(line_term[1][1:-1])
                 if "(" in line_term[2]:
                     addr = labels.get(line_term[2][1:-1])
-                    instr = {'opcode': op, 'reg': num_first_reg, 'op': addr, 'term': Term(pc, 1)}
+                    instr = {'opcode': op, 'reg': num_first_reg, 'op': addr, 'addrType': 1, 'term': Term(pc, line_term[2][1:-1])}
                 else:
                     addr = labels.get(line_term[2])
-                    instr = {'opcode': op, 'reg': num_first_reg, 'op': addr, 'term': Term(pc, 0)}
+                    instr = {'opcode': op, 'reg': num_first_reg, 'op': addr, 'addrType': 0, 'term': Term(pc, line_term[2])}
             elif op in ['add', 'sub', 'mod', 'inc', 'cmp']:
                 if len(line_term) == 2:
                     num_first_reg = int(line_term[1][1:])
-                    instr = {'opcode': op, 'op': num_first_reg, 'term': Term(pc, 2)}
+                    instr = {'opcode': op, 'op': num_first_reg, 'addrType': 2, 'term': Term(pc, "")}
                 elif len(line_term) == 3:
                     num_first_reg = int(line_term[1][1:-1])
                     num_second_reg = int(line_term[2][1:])
-                    instr = {'opcode': op, 'op1': num_first_reg, 'op2': num_second_reg, 'term': Term(pc, 2)}
+                    instr = {'opcode': op, 'op1': num_first_reg, 'op2': num_second_reg, 'addrType': 2, 'term': Term(pc, "")}
                 elif len(line_term) == 4:
                     num_1_reg = int(line_term[1][1:-1])
                     num_2_reg = int(line_term[2][1:-1])
                     num_3_reg = int(line_term[3][1:])
-                    instr = {'opcode': op, 'op1': num_1_reg, 'op2': num_2_reg, 'op3': num_3_reg, 'term': Term(pc, 2)}
+                    instr = {'opcode': op, 'op1': num_1_reg, 'op2': num_2_reg, 'op3': num_3_reg,  'addrType': 2, 'term': Term(pc, "")}
             elif op in ['di', 'ei', 'in', 'out', 'iret', 'halt']:
                 if len(line_term) == 1:
-                    instr = {'opcode': op, 'term': Term(pc, 3)}
+                    instr = {'opcode': op, 'addrType': 3, 'term': Term(pc, "")}
                 elif len(line_term) == 3:
                     num_first_reg = int(line_term[1][1:-1])
                     num_port = int(line_term[2])
-                    instr = {'opcode': op, 'reg': num_first_reg, 'op': num_port, 'term': Term(pc, 4)}
+                    instr = {'opcode': op, 'reg': num_first_reg, 'op': num_port, 'addrType': 4, 'term': Term(pc, "")}
             elif op in ['jz', 'jnz', 'jmp']:
                 addr = int(labels.get(line_term[1]))
-                instr = {'opcode': op, 'op': addr, 'term': Term(pc, 0)}
+                instr = {'opcode': op, 'op': addr, 'addrType': 0,  'term': Term(pc, line_term[1])}
             elif op == 'move':
                 num_first_reg = int(line_term[1][1:-1])
                 if 'r' in line_term[2]:
                     reg = int(line_term[2][1:])
-                    instr = {'opcode': op, 'reg': num_first_reg, 'op': reg, 'term': Term(pc, 2)}
+                    instr = {'opcode': op, 'reg': num_first_reg, 'op': reg, 'addrType': 2, 'term': Term(pc, "")}
                 elif '#' in line_term[2]:
                     value = int(line_term[2][1:])
-                    instr = {'opcode': op, 'reg': num_first_reg, 'op': value, 'term': Term(pc, 0)}
+                    instr = {'opcode': op, 'reg': num_first_reg, 'op': value, 'addrType': 0, 'term': Term(pc, "")}
         else:
             if op.isdigit():
-                instr = {'data': int(op)}
+                instr = {'data': int(op), 'term': Term(pc, "")}
             else:
-                instr = {'data': labels.get(op)}
+                instr = {'data': labels.get(op), 'term': Term(pc, op)}
         code.append(instr)
     if '.int1' in labels:
         code.append({'int1': labels.get('.int1')})
