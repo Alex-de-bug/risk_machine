@@ -97,7 +97,7 @@ class RegistersFile:
 
     def sel_right_reg(self, number: int) -> None:
         """ Выбор регистра значение, который поступит на правый выход """
-        if 0 <= number <= 13:
+        if 0 <= number <= 12:
             self.right_out = getattr(self, f'r{number}')
         elif number == 13:
             self.right_out = self.ar
@@ -157,16 +157,15 @@ class Alu:
 
 class InterruptionController:
     interruption: bool = None
-    interruption_number: int = None
+    interruption_vector_address: int = None
 
     def __init__(self):
         self.interruption = False
-        self.interruption_number = 0
+        self.interruption_vector_address = 0
 
     def generate_interruption(self, number: int) -> None:
-        assert number == 1, f"Interruption controller doesn't invoke interruption-{number}"
         self.interruption = True
-        self.interruption_number = number
+        self.interruption_vector_address = number
 
 
 class PortController:
@@ -178,9 +177,9 @@ class PortController:
         self.port_1 = 0
 
     @staticmethod
-    def int_signal(interruption_controller) -> None:
+    def int_signal(interruption_controller, address: int) -> None:
         """  Генерация прерывания """
-        interruption_controller.generate_interruption(1)
+        interruption_controller.generate_interruption(address)
 
     def read_value(self, buffer: int) -> int:
         self.port_0 = buffer
@@ -232,13 +231,13 @@ class DataPath:
         assert address < self.memory_size, f"Memory doesn't have cell with index {address}"
         return self.memory[address]
 
-    def read_port(self, address: int) -> int:
+    def signal_read_port(self, address: int) -> int:
         """ Прочитать значение из порта """
         if address == INPUT_PORT_ADDRESS:
             return self.port_controller.read_value(self.input_buffer)
         raise ValueError("PortAddressError")
 
-    def write_port(self, address: int, value: int) -> bool:
+    def signal_write_port(self, address: int, value: int) -> bool:
         """  Вывод значения в порт """
         if address == OUTPUT_PORT_ADDRESS:
             character = chr(value)
@@ -250,14 +249,108 @@ class DataPath:
 
 
 class ControlUnit:
+    tick_counter: int = None
+
+    interruption_enabled: bool = None
+
+    handling_interruption: bool = None
+
     data_path: DataPath = None
+
+    current_instruction: Opcode = None
+
+    current_operand: int = None
+
+    instruction_executors = None
+
+    def __init__(self, data_path: DataPath):
+        self.tick_counter = 0
+        self.interruption_enabled = False
+        self.handling_interruption = False
+        self.data_path = data_path
+        self.instruction_executors = {
+            # Opcode.LOAD: self.execute_load,
+            # Opcode.STORE: self.execute_store,
+            #
+            # Opcode.ADD: self.execute_binary_math_instruction,
+            # Opcode.SUB: self.execute_binary_math_instruction,
+            # Opcode.MOD: self.execute_binary_math_instruction,
+            # Opcode.INC: self.execute_unary_math_instruction,
+            # Opcode.CMP: self.execute_cmp,
+            #
+            # Opcode.EI: self.execute_ei,
+            # Opcode.DI: self.execute_di,
+            # Opcode.IN: self.execute_in,
+            # Opcode.OUT: self.execute_out,
+            #
+            # Opcode.JZ: self.execute_jz,
+            # Opcode.JNZ: self.execute_jnz,
+            # Opcode.JMP: self.execute_jmp,
+            #
+            # Opcode.MOVE: self.execute_move,
+            #
+            # Opcode.HALT: self.execute_halt,
+            #
+            # Opcode.IRET: self.execute_iret,
+        }
+
+    def tick(self):
+        self.tick_counter += 1
+        registers_repr = "TICK: {:3} PC: {:3} Z_FLAG: {:3} \n r0: {:3}  r1: {:3}  r2: {:3} r3: {:3} r4: {:3} r5: {:3} r6: {:3} r7: {:3} r8: {:3} r9: {:3} r10: {:3} r11: {:3} r12: {:3} ar: {:3} ir: {:3} ipc: {:3} ".format(
+            str(self.tick_counter),
+            str(self.data_path.pc),
+            int(self.data_path.alu.zero_flag),
+            str(self.data_path.register_file.r0),
+            str(self.data_path.register_file.r1),
+            str(self.data_path.register_file.r2),
+            str(self.data_path.register_file.r3),
+            str(self.data_path.register_file.r4),
+            str(self.data_path.register_file.r5),
+            str(self.data_path.register_file.r6),
+            str(self.data_path.register_file.r7),
+            str(self.data_path.register_file.r8),
+            str(self.data_path.register_file.r9),
+            str(self.data_path.register_file.r10),
+            str(self.data_path.register_file.r11),
+            str(self.data_path.register_file.r12),
+            str(self.data_path.register_file.ar),
+            str(self.data_path.register_file.ir.get("opcode")),
+            str(self.data_path.register_file.ipc),
+        )
+
+        port_0 = "PORT_0: {}".format(self.data_path.port_controller.port_0)
+        port_1 = "PORT_1: {}".format(self.data_path.port_controller.port_1)
+
+        instruction_repr = self.current_instruction
+
+        if self.current_operand is not None:
+            instruction_repr += " {}".format(self.current_operand)
+
+        print("{} \t instruction: {}\n\t   {}\n\t   {}".format(registers_repr, instruction_repr, port_0, port_1))
+
+    def initialization_cycle(self):
+        data_out = self.data_path.signal_read_memory(self.data_path.pc)
+        self.current_instruction = Opcode(data_out.get("opcode"))
+        self.data_path.register_file.latch_reg_ir(data_out)
+        self.tick()
+        self.data_path.register_file.sel_right_reg(14)
+        address = self.data_path.alu.cut_operand(self.data_path.register_file.right_out)
+        self.tick()
+        self.data_path.register_file.latch_reg_n(13, address)
+        self.data_path.register_file.sel_right_reg(13)
+        alu_result = self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add"))
+        self.data_path.signal_latch_pc(alu_result)
+        self.tick()
+
+
 
 
 def initiate_interruption(control_unit, input_tokens):
     if len(input_tokens) != 0:
         next_token = input_tokens[0]
         if control_unit.tick_counter >= next_token[0]:
-            control_unit.data_path.port_controller.int_signal(control_unit.data_path.interruption_controller)
+            address = control_unit.data_path.memory[-1].get("int1")
+            control_unit.data_path.port_controller.int_signal(control_unit.data_path.interruption_controller, address)
             if next_token[1]:
                 control_unit.data_path.input_buffer = ord(next_token[1])
             else:
@@ -273,17 +366,17 @@ def simulation(code, input_tokens):
     control_unit.initialization_cycle()
 
     instruction_counter = 0
-    try:
-        while instruction_counter < INSTRUCTION_LIMIT:
-            input_tokens = initiate_interruption(control_unit, input_tokens)
-            control_unit.check_and_handle_interruption()
-            control_unit.decode_and_execute_instruction()
-            instruction_counter += 1
-    except StopIteration:
-        pass
-
-    if instruction_counter == INSTRUCTION_LIMIT:
-        logging.warning("Instruction limit reached")
+    # try:
+    #     while instruction_counter < INSTRUCTION_LIMIT:
+    #         input_tokens = initiate_interruption(control_unit, input_tokens)
+    #         control_unit.check_and_handle_interruption()
+    #         control_unit.decode_and_execute_instruction()
+    #         instruction_counter += 1
+    # except StopIteration:
+    #     pass
+    #
+    # if instruction_counter == INSTRUCTION_LIMIT:
+    #     logging.warning("Instruction limit reached")
 
     return data_path.output_buffer, instruction_counter, control_unit.tick_counter
 
