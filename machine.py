@@ -28,18 +28,6 @@ ALU_OPCODE_SINGLE_HANDLERS = {
     Opcode.INC: lambda right: right + 1,
 }
 
-class InterruptionController:
-    interruption: bool = None
-    interruption_number: int = None
-
-    def __init__(self):
-        self.interruption = False
-        self.interruption_number = 0
-
-    def generate_interruption(self, number: int) -> None:
-        assert number == 1, f"Interruption controller doesn't invoke interruption-{number}"
-        self.interruption = True
-        self.interruption_number = number
 
 class RegistersFile:
     r0: int = None
@@ -61,6 +49,7 @@ class RegistersFile:
 
     left_out: int = None
     right_out = None
+
     def __init__(self):
         self.r0 = 0
         self.r1 = 0
@@ -75,9 +64,9 @@ class RegistersFile:
         self.r10 = 0
         self.r11 = 0
         self.r12 = 0
-        self.ar = 0 #13
-        self.ir = {} #14
-        self.ipc = 0 #15
+        self.ar = 0  #13
+        self.ir = {}  #14
+        self.ipc = 0  #15
         self.left_out: int = 0
 
     def latch_reg_n(self, number: int, value: int) -> None:
@@ -119,6 +108,7 @@ class RegistersFile:
         else:
             raise ValueError("Invalid register number")
 
+
 class Alu:
     zero_flag = None
 
@@ -128,7 +118,7 @@ class Alu:
     def perform(self, left: int, right: int, opcode: Opcode) -> int:
         """ Математические действия алу """
         assert (
-            opcode in ALU_OPCODE_BINARY_HANDLERS or opcode in ALU_OPCODE_SINGLE_HANDLERS
+                opcode in ALU_OPCODE_BINARY_HANDLERS or opcode in ALU_OPCODE_SINGLE_HANDLERS
         ), f"Unknown ALU command {opcode}"
         if opcode in ALU_OPCODE_BINARY_HANDLERS:
             handler = ALU_OPCODE_BINARY_HANDLERS[opcode]
@@ -142,7 +132,7 @@ class Alu:
 
     @staticmethod
     def cut_operand(right: dict) -> int:
-        """ Вырезание операнда """
+        """ Отделение операнада из инструкции"""
         if "op" in right:
             return right.get("op")
         else:
@@ -164,6 +154,42 @@ class Alu:
         else:
             self.zero_flag = False
 
+
+class InterruptionController:
+    interruption: bool = None
+    interruption_number: int = None
+
+    def __init__(self):
+        self.interruption = False
+        self.interruption_number = 0
+
+    def generate_interruption(self, number: int) -> None:
+        assert number == 1, f"Interruption controller doesn't invoke interruption-{number}"
+        self.interruption = True
+        self.interruption_number = number
+
+
+class PortController:
+    port_0: int = None
+    port_1: int = None
+
+    def __init__(self):
+        self.port_0 = 0
+        self.port_1 = 0
+
+    @staticmethod
+    def int_signal(interruption_controller) -> None:
+        """  Генерация прерывания """
+        interruption_controller.generate_interruption(1)
+
+    def read_value(self, buffer: int) -> int:
+        self.port_0 = buffer
+        return self.port_0
+
+    def write_value(self, char: chr) -> None:
+        self.port_0 = char
+
+
 class DataPath:
     register_file: RegistersFile = None
     pc = None
@@ -173,6 +199,7 @@ class DataPath:
     interruption_controller: InterruptionController = None
     input_buffer = None
     output_buffer = None
+    port_controller: PortController = None
 
     def __init__(self, memory):
         self.register_file = RegistersFile()
@@ -189,6 +216,8 @@ class DataPath:
         self.input_buffer = 0
         self.output_buffer = []
 
+        self.port_controller = PortController()
+
     def signal_latch_pc(self, value: int) -> None:
         """ Защёлкнуть значение в Program Counter """
         self.pc = value
@@ -203,21 +232,40 @@ class DataPath:
         assert address < self.memory_size, f"Memory doesn't have cell with index {address}"
         return self.memory[address]
 
+    def read_port(self, address: int) -> int:
+        """ Прочитать значение из порта """
+        if address == INPUT_PORT_ADDRESS:
+            return self.port_controller.read_value(self.input_buffer)
+        raise ValueError("PortAddressError")
+
+    def write_port(self, address: int, value: int) -> bool:
+        """  Вывод значения в порт """
+        if address == OUTPUT_PORT_ADDRESS:
+            character = chr(value)
+            self.port_controller.write_value(character)
+            logging.debug("output: %s << %s", repr("".join(self.output_buffer)), repr(character))
+            self.output_buffer.append(character)
+            return True
+        raise ValueError("PortAddressError")
 
 
 class ControlUnit:
+    data_path: DataPath = None
+
 
 def initiate_interruption(control_unit, input_tokens):
     if len(input_tokens) != 0:
         next_token = input_tokens[0]
         if control_unit.tick_counter >= next_token[0]:
-            control_unit.data_path.interruption_controller.generate_interruption(1)
+            control_unit.data_path.port_controller.int_signal(control_unit.data_path.interruption_controller)
             if next_token[1]:
                 control_unit.data_path.input_buffer = ord(next_token[1])
             else:
                 control_unit.data_path.input_buffer = 0
             return input_tokens[1:]
     return input_tokens
+
+
 def simulation(code, input_tokens):
     data_path = DataPath(code)
     control_unit = ControlUnit(data_path)
