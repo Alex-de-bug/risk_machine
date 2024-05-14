@@ -9,6 +9,11 @@ INT1_ADDRESS = 1
 INPUT_PORT_ADDRESS = 0
 OUTPUT_PORT_ADDRESS = 1
 
+DIRECTION_ADDRESS = 0
+INDERECTION_ADDRESS = 1
+REGISTER_ADDRESS = 2
+NO_ADDRESS = 3
+PORT_ADDRESS = 4
 
 class Opcode(str, enum.Enum):
     LOAD = "load"  # Загрузка значения из памяти в регистр

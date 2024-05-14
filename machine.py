@@ -13,9 +13,14 @@ from isa import (
     OUTPUT_PORT_ADDRESS,
     Opcode,
     read_code,
+    DIRECTION_ADDRESS,
+    INDERECTION_ADDRESS,
+    REGISTER_ADDRESS,
+    NO_ADDRESS,
+    PORT_ADDRESS,
 )
 
-INSTRUCTION_LIMIT = 1500
+INSTRUCTION_LIMIT = 10000
 
 ALU_OPCODE_BINARY_HANDLERS = {
     Opcode.ADD: lambda left, right: int(left + right),
@@ -128,6 +133,9 @@ class Alu:
             value = handler(right)
         value = self.handle_overflow(value)
         self.set_flags(value)
+        # if value == 0: self.zero_flag = 1
+        # else: self.zero_flag = 0
+
         return value
 
     @staticmethod
@@ -150,9 +158,9 @@ class Alu:
     def set_flags(self, value) -> None:
         """ Выставление флагов по результату """
         if value == 0:
-            self.zero_flag = True
+            self.zero_flag = 1
         else:
-            self.zero_flag = False
+            self.zero_flag = 0
 
 
 class InterruptionController:
@@ -224,9 +232,9 @@ class DataPath:
     def signal_write_memory(self, address: int, value: int) -> None:
         """ Записать значение в память """
         assert address < self.memory_size, f"Memory doesn't have cell with index {address}"
-        self.memory[address] = value
+        self.memory[address]["data"] = value
 
-    def signal_read_memory(self, address: int) -> int:
+    def signal_read_memory(self, address: int):
         """ Прочитать значение из памяти """
         assert address < self.memory_size, f"Memory doesn't have cell with index {address}"
         return self.memory[address]
@@ -269,34 +277,34 @@ class ControlUnit:
         self.handling_interruption = False
         self.data_path = data_path
         self.instruction_executors = {
-            # Opcode.LOAD: self.execute_load,
-            # Opcode.STORE: self.execute_store,
-            #
-            # Opcode.ADD: self.execute_binary_math_instruction,
-            # Opcode.SUB: self.execute_binary_math_instruction,
-            # Opcode.MOD: self.execute_binary_math_instruction,
-            # Opcode.INC: self.execute_unary_math_instruction,
-            # Opcode.CMP: self.execute_cmp,
-            #
+            Opcode.LOAD: self.execute_load,
+            Opcode.STORE: self.execute_store,
+
+            Opcode.ADD: self.execute_binary_math_instruction,
+            Opcode.SUB: self.execute_binary_math_instruction,
+            Opcode.MOD: self.execute_binary_math_instruction,
+            Opcode.INC: self.execute_unary_math_instruction,
+            Opcode.CMP: self.execute_cmp,
+
             # Opcode.EI: self.execute_ei,
             # Opcode.DI: self.execute_di,
             # Opcode.IN: self.execute_in,
             # Opcode.OUT: self.execute_out,
-            #
-            # Opcode.JZ: self.execute_jz,
-            # Opcode.JNZ: self.execute_jnz,
-            # Opcode.JMP: self.execute_jmp,
-            #
-            # Opcode.MOVE: self.execute_move,
-            #
-            # Opcode.HALT: self.execute_halt,
-            #
-            # Opcode.IRET: self.execute_iret,
+
+            Opcode.JZ: self.execute_jz,
+            Opcode.JNZ: self.execute_jnz,
+            Opcode.JMP: self.execute_jmp,
+
+            Opcode.MOVE: self.execute_move,
+
+            Opcode.HALT: self.execute_halt,
+
+            Opcode.IRET: self.execute_iret,
         }
 
-    def tick(self):
+    def tick(self, interpr: str):
         self.tick_counter += 1
-        registers_repr = "TICK: {:3} PC: {:3} Z_FLAG: {:3} \n r0: {:3}  r1: {:3}  r2: {:3} r3: {:3} r4: {:3} r5: {:3} r6: {:3} r7: {:3} r8: {:3} r9: {:3} r10: {:3} r11: {:3} r12: {:3} ar: {:3} ir: {:3} ipc: {:3} ".format(
+        registers_repr = "TICK: {:3} PC: {:3} Z_FLAG: {:3} \n r0: {:2}|  r1: {:2}|  r2: {:2}| r3: {:2}| r4: {:2}| r5: {:2}| r6: {:2}| r7: {:2}| r8: {:2}| r9: {:2}| r10: {:2}| r11: {:2}| r12: {:2}| ar: {:2}| ir: {:2}| ipc: {:2}| ".format(
             str(self.tick_counter),
             str(self.data_path.pc),
             int(self.data_path.alu.zero_flag),
@@ -318,31 +326,172 @@ class ControlUnit:
             str(self.data_path.register_file.ipc),
         )
 
-        port_0 = "PORT_0: {}".format(self.data_path.port_controller.port_0)
-        port_1 = "PORT_1: {}".format(self.data_path.port_controller.port_1)
+        port_0 = "|PORT_0: {} |".format(self.data_path.port_controller.port_0)
+        port_1 = "PORT_1: {}|".format(self.data_path.port_controller.port_1)
 
         instruction_repr = self.current_instruction
 
         if self.current_operand is not None:
             instruction_repr += " {}".format(self.current_operand)
 
-        print("{} \t instruction: {}\n\t   {}\n\t   {}".format(registers_repr, instruction_repr, port_0, port_1))
+        logging.debug(
+            "{} {} | \t[instruction: {} #{}] {} {} ".format(registers_repr, interpr, instruction_repr, self.data_path.register_file.ir.get("term")[0], port_0, port_1))
 
     def initialization_cycle(self):
         data_out = self.data_path.signal_read_memory(self.data_path.pc)
         self.current_instruction = Opcode(data_out.get("opcode"))
         self.data_path.register_file.latch_reg_ir(data_out)
-        self.tick()
+        self.tick("MEM(PC) -> IR")
+
         self.data_path.register_file.sel_right_reg(14)
         address = self.data_path.alu.cut_operand(self.data_path.register_file.right_out)
-        self.tick()
         self.data_path.register_file.latch_reg_n(13, address)
+        self.tick("IR[OPERAND] -> AR")
+
         self.data_path.register_file.sel_right_reg(13)
         alu_result = self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add"))
         self.data_path.signal_latch_pc(alu_result)
-        self.tick()
+        self.tick("0 + AR -> PC")
 
+    def decode_and_execute_instruction(self):
+        data_out = self.data_path.signal_read_memory(self.data_path.pc)
+        self.current_instruction = Opcode(data_out.get("opcode"))
+        self.data_path.register_file.latch_reg_ir(data_out)
+        self.tick("MEM[PC] -> IR")
+        instruction_executor = self.instruction_executors[self.current_instruction]
+        instruction_executor()
 
+    def execute_halt(self):
+        raise StopIteration()
+
+    def address_selection(self):
+        self.data_path.register_file.sel_right_reg(14)
+        self.data_path.register_file.latch_reg_n(13,
+                                                 self.data_path.alu.cut_operand(self.data_path.register_file.right_out))
+        self.tick("IR(OPERAND) -> AR")
+
+        if self.data_path.register_file.ir.get("addrType") == INDERECTION_ADDRESS:
+            self.data_path.register_file.latch_reg_n(15, self.data_path.pc)
+            self.data_path.register_file.sel_right_reg(13)
+            self.data_path.signal_latch_pc(
+                self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add")))
+            self.tick("PC -> IPC; 0 + AR -> PC")
+
+            self.data_path.register_file.latch_reg_n(13,
+                                                     self.data_path.signal_read_memory(self.data_path.pc).get("data"))
+            self.data_path.register_file.sel_right_reg(13)
+            self.data_path.signal_latch_pc(
+                self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add")))
+            self.tick("MEM[PC] - > AR; 0 + AR -> PC")
+
+        elif self.data_path.register_file.ir.get("addrType") == DIRECTION_ADDRESS:
+            self.data_path.register_file.latch_reg_n(15, self.data_path.pc)
+            self.data_path.register_file.sel_right_reg(13)
+            self.data_path.signal_latch_pc(
+                self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add")))
+            self.tick("PC -> IPC; 0 + AR -> PC")
+
+    def execute_load(self):
+        self.address_selection()
+
+        data_out = self.data_path.signal_read_memory(self.data_path.pc).get("data")
+        self.data_path.register_file.latch_reg_n(self.data_path.register_file.ir.get("reg"), data_out)
+        self.tick("MEM[PC] -> R" + str(self.data_path.register_file.ir.get("reg")))
+
+        self.data_path.register_file.sel_right_reg(15)
+        self.data_path.signal_latch_pc(
+            self.data_path.alu.perform(1, self.data_path.register_file.right_out, Opcode("add")))
+        self.tick("1 + IPC -> PC")
+
+    def execute_store(self):
+        self.address_selection()
+
+        self.data_path.register_file.sel_right_reg(self.data_path.register_file.ir.get("reg"))
+        self.data_path.signal_write_memory(self.data_path.pc, self.data_path.register_file.right_out)
+        self.tick("R" + str(self.data_path.register_file.ir.get("reg")) + " -> MEM[PC]")
+
+        self.data_path.register_file.sel_right_reg(15)
+        self.data_path.signal_latch_pc(
+            self.data_path.alu.perform(1, self.data_path.register_file.right_out, Opcode("add")))
+        self.tick("1 + IPC -> PC")
+
+    def execute_binary_math_instruction(self):
+        self.data_path.register_file.sel_left_reg(self.data_path.register_file.ir.get("op2"))
+        self.data_path.register_file.sel_right_reg(self.data_path.register_file.ir.get("op3"))
+        result = self.data_path.alu.perform(self.data_path.register_file.left_out,
+                                            self.data_path.register_file.right_out,
+                                            self.data_path.register_file.ir.get("opcode"))
+        self.data_path.register_file.latch_reg_n(self.data_path.register_file.ir.get("op1"), result)
+        operation = self.opcode_to_math_operation(self.data_path.register_file.ir.get("opcode"))
+        self.tick("R" + str(self.data_path.register_file.ir.get("op2")) + " " + operation + " R" + str(self.data_path.register_file.ir.get("op3")) + " -> R" + str(self.data_path.register_file.ir.get("op1")))
+
+        self.data_path.signal_latch_pc(self.data_path.pc + 1)
+        self.tick("PC + 1 -> PC")
+
+    def execute_unary_math_instruction(self):
+        self.data_path.register_file.sel_right_reg(self.data_path.register_file.ir.get("op"))
+        self.data_path.register_file.latch_reg_n(self.data_path.register_file.ir.get("op"), self.data_path.alu.perform(1, self.data_path.register_file.right_out, Opcode("add")))
+        self.tick("1 + R"+str(self.data_path.register_file.ir.get("op"))+" -> R"+str(self.data_path.register_file.ir.get("op")))
+
+        self.data_path.signal_latch_pc(self.data_path.pc + 1)
+        self.tick("PC + 1 -> PC")
+
+    def execute_cmp(self):
+        self.data_path.register_file.sel_left_reg(self.data_path.register_file.ir.get("op1"))
+        self.data_path.register_file.sel_right_reg(self.data_path.register_file.ir.get("op2"))
+        self.data_path.alu.perform(self.data_path.register_file.left_out,
+                                   self.data_path.register_file.right_out,
+                                   self.data_path.register_file.ir.get("opcode"))
+
+        self.data_path.signal_latch_pc(self.data_path.pc + 1)
+        self.tick("R"+str(self.data_path.register_file.ir.get("op1")) + " - " + "R"+str(self.data_path.register_file.ir.get("op2")) + " --> ZERO FLAG; " + "PC + 1 -> PC")
+
+    def execute_jz(self):
+        self.data_path.register_file.sel_right_reg(14)
+        if self.data_path.alu.zero_flag == 1:
+            self.data_path.signal_latch_pc(self.data_path.alu.cut_operand(self.data_path.register_file.right_out))
+            self.tick("IR(OPERAND) -> PC")
+        else:
+            self.data_path.signal_latch_pc(self.data_path.pc + 1)
+            self.tick("PC + 1 -> PC")
+
+    def execute_jnz(self):
+        self.data_path.register_file.sel_right_reg(14)
+        if self.data_path.alu.zero_flag == 0:
+            self.data_path.signal_latch_pc(self.data_path.alu.cut_operand(self.data_path.register_file.right_out))
+            self.tick("IR(OPERAND) -> PC")
+        else:
+            self.data_path.signal_latch_pc(self.data_path.pc + 1)
+            self.tick("PC + 1 -> PC")
+
+    def execute_jmp(self):
+        self.data_path.register_file.sel_right_reg(14)
+        self.data_path.signal_latch_pc(self.data_path.alu.cut_operand(self.data_path.register_file.right_out))
+        self.tick("IR(OPERAND) -> PC")
+
+    def execute_move(self):
+        if self.data_path.register_file.ir.get("addrType") == REGISTER_ADDRESS:
+            self.data_path.register_file.sel_right_reg(self.data_path.register_file.ir.get("op"))
+            self.data_path.register_file.latch_reg_n(self.data_path.register_file.ir.get("reg"), self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode.ADD))
+            self.tick("R"+str(self.data_path.register_file.ir.get("op")) + " -> " + "R"+str(self.data_path.register_file.ir.get("reg")))
+        else:
+            self.data_path.register_file.sel_right_reg(14)
+            self.data_path.register_file.latch_reg_n(self.data_path.register_file.ir.get("reg"), self.data_path.alu.cut_operand(self.data_path.register_file.right_out))
+            self.tick("#"+str(self.data_path.register_file.ir.get("op")) + " -> " + "R"+str(self.data_path.register_file.ir.get("reg")))
+
+        self.data_path.signal_latch_pc(self.data_path.pc + 1)
+        self.tick("PC + 1 -> PC")
+
+    def execute_iret(self):
+        self.data_path.register_file.sel_right_reg(15)
+        self.data_path.signal_latch_pc(self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode.ADD))
+        self.tick("IPC -> PC")
+
+    @staticmethod
+    def opcode_to_math_operation(opcode: str) -> str:
+        if opcode == Opcode.ADD: return "+"
+        if opcode == Opcode.SUB or opcode == Opcode.CMP: return "-"
+        if opcode == Opcode.MOD: return "%"
 
 
 def initiate_interruption(control_unit, input_tokens):
@@ -365,18 +514,25 @@ def simulation(code, input_tokens):
 
     control_unit.initialization_cycle()
 
-    instruction_counter = 0
-    # try:
-    #     while instruction_counter < INSTRUCTION_LIMIT:
-    #         input_tokens = initiate_interruption(control_unit, input_tokens)
-    #         control_unit.check_and_handle_interruption()
-    #         control_unit.decode_and_execute_instruction()
-    #         instruction_counter += 1
-    # except StopIteration:
-    #     pass
-    #
-    # if instruction_counter == INSTRUCTION_LIMIT:
-    #     logging.warning("Instruction limit reached")
+    instruction_counter = 1
+    try:
+        while instruction_counter < INSTRUCTION_LIMIT:
+            instruction_counter += 1
+            control_unit.decode_and_execute_instruction()
+            # control_unit.check_and_handle_interruption()
+            # input_tokens = initiate_interruption(control_unit, input_tokens)
+
+    except StopIteration:
+        pass
+
+    if instruction_counter == INSTRUCTION_LIMIT:
+        logging.warning("Instruction limit reached")
+
+    logging.debug(
+        "------------------------------------------------------------------------------------------------------------------------------\n Memory:")
+    for inst in control_unit.data_path.memory:
+        if inst != 0:
+            logging.debug(inst)
 
     return data_path.output_buffer, instruction_counter, control_unit.tick_counter
 
