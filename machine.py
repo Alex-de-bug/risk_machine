@@ -20,7 +20,7 @@ from isa import (
     PORT_ADDRESS,
 )
 
-INSTRUCTION_LIMIT = 200
+INSTRUCTION_LIMIT = 10000
 
 ALU_OPCODE_BINARY_HANDLERS = {
     Opcode.ADD: lambda left, right: int(left + right),
@@ -228,7 +228,7 @@ class DataPath:
     def signal_write_memory(self, address: int, value: int) -> None:
         """ Записать значение в память """
         assert address < self.memory_size, f"Memory doesn't have cell with index {address}"
-        self.memory[address]["data"] = value
+        self.memory[address] = {"data": value}
 
     def signal_read_memory(self, address: int):
         """ Прочитать значение из памяти """

@@ -16,7 +16,6 @@ section .text:
         jmp .loop
 
     .end:
-        out r1, 1
         halt
 
     .sum:

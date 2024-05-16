@@ -1,8 +1,9 @@
 section .data:
-    what: "What's your name???0"
+    what: "What's your name??? 0"
     hello: "Hello, "
     buffer: resb 5
     pointer: what
+    start: hello
     buf_pointer: buffer
 
 
@@ -25,22 +26,20 @@ section .text:
     .read_loop:
         di
         cmp r1, r3              @ проверяем на ноль регистр куда записывается ввод
-        jz .loop2               @ если встретили нуль-терминатор, то ввод считан, можно переходить к выводу
+        jz .ans_loop               @ если встретили нуль-терминатор, то ввод считан, можно переходить к выводу
         ei
         jmp .read_loop
 
-    .loop2:
-        load r4, hello
-        store r4, pointer       @ обновляем указатель чтобы он смотрел на начало приветствия
+
     .ans_loop:
-        load r0, (pointer)      @ загрузка символа
+        load r0, (start)      @ загрузка символа
         cmp r0, r3              @ проверка на нуль-терминатор
         jz .end                 @ если дошли до нуль терминатора, то вывод окончен
         out r0, 1               @ иначе выводим символ
 
-        load r0, pointer
+        load r0, start
         inc r0
-        store r0, pointer       @ обновляем указатель
+        store r0, start       @ обновляем указатель
 
         jmp .loop
 
