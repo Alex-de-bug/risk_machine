@@ -3,6 +3,7 @@ section .data:
     pointer: hello
 
 section .text:
+    ei
     load r0, hello
     load r1, (pointer)
     cmp r1, r0
@@ -18,3 +19,8 @@ section .text:
 
     .edtr:
         halt
+
+.int1:
+    in r1, 0
+    out r1, 1
+    iret

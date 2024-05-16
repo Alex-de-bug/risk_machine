@@ -1,5 +1,5 @@
 section .data:
-    what: "What's your name???", 0
+    what: "What's your name???0"
     hello: "Hello, "
     buffer: resb 5
     pointer: what
@@ -9,7 +9,7 @@ section .data:
 section .text:
     di
     move r1, #1                 @ в r1 будут записываться символы со ввода
-    move r3, #0                 @ в r3 лежит 0 для сравнения
+    move r3, #48                 @ в r3 лежит 0 для сравнения
     ei
 
     .loop:
