@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 
 import sys
-from typing import Dict, List
 
 from isa import Opcode, Term, write_code
 
 
-def remove_comments_and_blank_lines(code: str) -> List[str]:
+def remove_comments_and_blank_lines(code: str) -> list:
     lines = code.split("\n")
     cleaned_lines = ["jmp .text"]
     for line in lines:
@@ -18,11 +17,25 @@ def remove_comments_and_blank_lines(code: str) -> List[str]:
     return cleaned_lines
 
 
-def process_data_section_in_list_inplace(code_lines: List[str]) -> None:
-    """
-    Модифицирует секцию .data в предоставленном списке строк ASM кода, преобразуя строки в Unicode значения,
-    обрабатывая числа и специальные директивы resb. Изменения происходят на месте в исходном списке.
-    """
+def handle_resb(value, key):
+    _, size = value.split()
+    return [f"{key}:"] + ["0" for _ in range(int(size))]
+
+def handle_string(value, key):
+    new_lines = [f"{key}:"]
+    on_str = False
+    for ch in value:
+        if ch == '"':
+            on_str = not on_str
+        elif not on_str and ch != " ":
+            if ch == ",":
+                continue
+            new_lines += ch
+        elif on_str:
+            new_lines += [str(ord(ch))]
+    return new_lines
+
+def process_data_section_in_list(code_lines: list) -> None:
     in_data_section = False
     insert_index = 0
 
@@ -48,16 +61,15 @@ def process_data_section_in_list_inplace(code_lines: List[str]) -> None:
                 on_str = False
                 for ch in value:
                     if ch == '"':
-                        on_str = on_str.__invert__()
-                    elif on_str.__invert__() and ch != " ":
+                        on_str = not on_str
+                    elif not on_str and ch != " ":
                         if ch == ",":
                             continue
-                        else:
-                            new_lines += ch
+                        new_lines += ch
                     elif on_str:
                         new_lines += [str(ord(ch))]
             else:
-                new_lines = [f"{key}:"] + [value]
+                new_lines = [f"{key}:", value]
 
             del code_lines[index]
             for idx, item in enumerate(new_lines):
@@ -65,7 +77,8 @@ def process_data_section_in_list_inplace(code_lines: List[str]) -> None:
             insert_index += len(new_lines) - 1
 
 
-def process_labels(lines: List[str]) -> Dict[str, int]:
+
+def process_labels(lines: list) -> dict:
     """
     Обрабатывает список строк и извлекает метки в словарь.
     Метки - это строки, содержащие '.название:' или 'название:'.
@@ -85,10 +98,57 @@ def process_labels(lines: List[str]) -> Dict[str, int]:
     return labels_dict
 
 
-def translate_to_machine_word(labels: dict[str, int], lines: list[str]) -> list[dict]:
-    """
-    Обрабатывает список строк, генерируя формат инструкций или данных, подставляя метки.
-    """
+def handle_load_store(line_term, labels, op, pc):
+    num_first_reg = int(line_term[1][1:-1])
+    if "(" in line_term[2]:
+        addr = labels.get(line_term[2][1:-1])
+        instr = {
+            "opcode": op,
+            "reg": num_first_reg,
+            "op": addr,
+            "addrType": 1,
+            "term": Term(pc, line_term[2][1:-1]),
+        }
+    else:
+        addr = labels.get(line_term[2])
+        instr = {
+            "opcode": op,
+            "reg": num_first_reg,
+            "op": addr,
+            "addrType": 0,
+            "term": Term(pc, line_term[2]),
+        }
+    return instr
+
+def handle_arithmetic(line_term, op, pc):
+    if len(line_term) == 2:
+        num_first_reg = int(line_term[1][1:])
+        instr = {"opcode": op, "op": num_first_reg, "addrType": 2, "term": Term(pc, "")}
+    elif len(line_term) == 3:
+        num_first_reg = int(line_term[1][1:-1])
+        num_second_reg = int(line_term[2][1:])
+        instr = {
+            "opcode": op,
+            "op1": num_first_reg,
+            "op2": num_second_reg,
+            "addrType": 2,
+            "term": Term(pc, ""),
+        }
+    elif len(line_term) == 4:
+        num_1_reg = int(line_term[1][1:-1])
+        num_2_reg = int(line_term[2][1:-1])
+        num_3_reg = int(line_term[3][1:])
+        instr = {
+            "opcode": op,
+            "op1": num_1_reg,
+            "op2": num_2_reg,
+            "op3": num_3_reg,
+            "addrType": 2,
+            "term": Term(pc, ""),
+        }
+    return instr
+
+def translate_to_machine_word(labels: dict, lines: list) -> list:
     code = []
 
     for pc, line in enumerate(lines):
@@ -97,51 +157,9 @@ def translate_to_machine_word(labels: dict[str, int], lines: list[str]) -> list[
         instr = []
         if op in [opcode.value for opcode in Opcode]:
             if op in ["load", "store"]:
-                num_first_reg = int(line_term[1][1:-1])
-                if "(" in line_term[2]:
-                    addr = labels.get(line_term[2][1:-1])
-                    instr = {
-                        "opcode": op,
-                        "reg": num_first_reg,
-                        "op": addr,
-                        "addrType": 1,
-                        "term": Term(pc, line_term[2][1:-1]),
-                    }
-                else:
-                    addr = labels.get(line_term[2])
-                    instr = {
-                        "opcode": op,
-                        "reg": num_first_reg,
-                        "op": addr,
-                        "addrType": 0,
-                        "term": Term(pc, line_term[2]),
-                    }
+                instr = handle_load_store(line_term, labels, op, pc)
             elif op in ["add", "sub", "mod", "inc", "cmp"]:
-                if len(line_term) == 2:
-                    num_first_reg = int(line_term[1][1:])
-                    instr = {"opcode": op, "op": num_first_reg, "addrType": 2, "term": Term(pc, "")}
-                elif len(line_term) == 3:
-                    num_first_reg = int(line_term[1][1:-1])
-                    num_second_reg = int(line_term[2][1:])
-                    instr = {
-                        "opcode": op,
-                        "op1": num_first_reg,
-                        "op2": num_second_reg,
-                        "addrType": 2,
-                        "term": Term(pc, ""),
-                    }
-                elif len(line_term) == 4:
-                    num_1_reg = int(line_term[1][1:-1])
-                    num_2_reg = int(line_term[2][1:-1])
-                    num_3_reg = int(line_term[3][1:])
-                    instr = {
-                        "opcode": op,
-                        "op1": num_1_reg,
-                        "op2": num_2_reg,
-                        "op3": num_3_reg,
-                        "addrType": 2,
-                        "term": Term(pc, ""),
-                    }
+                instr = handle_arithmetic(line_term, op, pc)
             elif op in ["di", "ei", "in", "out", "iret", "halt"]:
                 if len(line_term) == 1:
                     instr = {"opcode": op, "addrType": 3, "term": Term(pc, "")}
@@ -173,12 +191,12 @@ def translate_to_machine_word(labels: dict[str, int], lines: list[str]) -> list[
     return code
 
 
+
 def translate(text):
     clear_lines = remove_comments_and_blank_lines(text)
-    process_data_section_in_list_inplace(clear_lines)
+    process_data_section_in_list(clear_lines)
     labels = process_labels(clear_lines)
     code = translate_to_machine_word(labels, clear_lines)
-
     return code
 
 

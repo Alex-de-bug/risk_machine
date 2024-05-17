@@ -16,7 +16,7 @@ from isa import (
     read_code,
 )
 
-INSTRUCTION_LIMIT = 10000
+INSTRUCTION_LIMIT = 20000
 
 ALU_OPCODE_BINARY_HANDLERS = {
     Opcode.ADD: lambda left, right: int(left + right),
@@ -79,7 +79,7 @@ class RegistersFile:
         elif number == 15:
             self.ipc = value
         else:
-            raise ValueError("Invalid register number")
+            raise InvalidRegisterNumberError()
 
     def latch_reg_ir(self, instruction) -> None:
         """Защёлкивание в регистр инструкции"""
@@ -94,7 +94,7 @@ class RegistersFile:
         elif number == 15:
             self.left_out = self.ipc
         else:
-            raise ValueError("Invalid register number")
+            raise InvalidRegisterNumberError()
 
     def sel_right_reg(self, number: int) -> None:
         """Выбор регистра значение, который поступит на правый выход"""
@@ -107,7 +107,7 @@ class RegistersFile:
         elif number == 15:
             self.right_out = self.ipc
         else:
-            raise ValueError("Invalid register number")
+            raise InvalidRegisterNumberError()
 
 
 class Alu:
@@ -137,8 +137,7 @@ class Alu:
         """Отделение операнада из инструкции"""
         if "op" in right:
             return right.get("op")
-        else:
-            raise ValueError("OperandError")
+        raise ValueError("OperandError")
 
     @staticmethod
     def handle_overflow(value: int) -> int:
@@ -550,7 +549,7 @@ class ControlUnit:
             self.data_path.signal_latch_pc(self.data_path.pc + 1)
             self.tick("PORT_0 -> R" + str(self.data_path.register_file.ir.get("reg")) + "; PC + 1 -> PC")
         else:
-            raise ValueError("Invalid input port number")
+            raise InvalidInputPortNumberError()
 
     def execute_out(self):
         self.data_path.register_file.sel_right_reg(14)
@@ -572,7 +571,7 @@ class ControlUnit:
             self.data_path.signal_latch_pc(self.data_path.pc + 1)
             self.tick("PC + 1 -> PC")
         else:
-            raise ValueError("Invalid input port number")
+            raise InvalidInputPortNumberError()
 
     @staticmethod
     def opcode_to_math_operation(opcode: str) -> str:
@@ -582,6 +581,7 @@ class ControlUnit:
             return "-"
         if opcode == Opcode.MOD:
             return "%"
+        raise UnknownALUCommandError(opcode)
 
     def check_and_handle_interruption(self) -> None:
         if not self.interruption_enabled:
@@ -666,3 +666,19 @@ if __name__ == "__main__":
     assert len(sys.argv) == 3, "Wrong arguments: machine.py <code_file> <input_file>"
     _, code_file, input_file = sys.argv
     main(code_file, input_file)
+
+class InvalidRegisterNumberError(ValueError):
+    def __init__(self):
+        super().__init__("Invalid register number")
+
+class InvalidInputPortNumberError(ValueError):
+    def __init__(self):
+        super().__init__("Invalid input port number")
+
+class MemoryCellError(AssertionError):
+    def __init__(self, address):
+        super().__init__(f"Memory doesn't have cell with index {address}")
+
+class UnknownALUCommandError(AssertionError):
+    def __init__(self, opcode):
+        super().__init__(f"Unknown ALU command {opcode}")
