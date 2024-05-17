@@ -27,7 +27,7 @@ log_format = "%(levelname)-7s %(module)s:%(funcName)-13s %(message)s"
 
 [tool.ruff]
 line-length = 120
-select = [
+lint.select = [
     # A set of chosen linter rules is specified here.
     # See https://beta.ruff.rs/docs/rules/ for more info.
     # pyflakes (simple obvious errors)
@@ -78,7 +78,7 @@ select = [
     # ruff-specific advices
     "RUF",
 ]
-ignore = [
+lint.ignore = [
     "COM812", # The following rules may cause conflicts when used with the formatter: `COM812`.
     "E501",   # allow lines longer than 80 symbols (up to 120)
     "T201",   # `print` found
@@ -91,10 +91,10 @@ ignore = [
 
 
 ]
-unfixable = [
+lint.unfixable = [
     "ERA001", # prohibit to "auto-fix" (=remove) commented-out code
 ]
 src = ["src"]
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 7
