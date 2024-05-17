@@ -2,7 +2,7 @@
 name = "brainfuck"
 version = "0.1.1"
 description = "An example project for Computer System Architecture class."
-authors = ["Aleksandr Penskoi <aleksandr.penskoi@gmail.com>"]
+authors = ["Aleksandr Denichenko <a.deni444enko@mail.ru>"]
 license = "BSD"
 readme = "README.md"
 
