@@ -23,7 +23,7 @@ def test_translator_asm_and_machine(golden, caplog):
     with tempfile.TemporaryDirectory() as tmpdirname:
         source = os.path.join(tmpdirname, "source.asm")
         input_stream = os.path.join(tmpdirname, "input.txt")
-        target = os.path.join(tmpdirname, "target.o")
+        target = os.path.join(tmpdirname, "struct.txt")
 
         with open(source, "w", encoding="utf-8") as file:
             file.write(golden["in_source"])
