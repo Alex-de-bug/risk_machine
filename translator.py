@@ -85,7 +85,7 @@ def process_labels(lines: List[str]) -> Dict[str, int]:
     return labels_dict
 
 
-def translate_to_machine_word(labels: Dict[str, int], lines: List[str]) -> List[Dict]:
+def translate_to_machine_word(labels: dict[str, int], lines: list[str]) -> list[dict]:
     """
     Обрабатывает список строк, генерируя формат инструкций или данных, подставляя метки.
     """

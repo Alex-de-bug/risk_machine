@@ -644,13 +644,6 @@ def simulation(code, input_tokens):
     if instruction_counter == INSTRUCTION_LIMIT:
         logging.warning("Instruction limit reached")
 
-    # logging.debug(
-    #     "------------------------------------------------------------------------------------------------------------------------------\n Memory:"
-    # )
-    # for index, inst in enumerate(control_unit.data_path.memory):
-    #     if inst != 0:
-    #         logging.debug(str(index) + " " + str(inst))
-
     return data_path.port_manager.output_buffer, instruction_counter, control_unit.tick_counter
 
 
