@@ -9,5 +9,5 @@ lint:
 test:
 	poetry run pytest -v
 
-#test-update-golden:
-#	poetry run pytest . -v --update-goldens
+test-update-golden:
+	poetry run pytest . -v --update-goldens
