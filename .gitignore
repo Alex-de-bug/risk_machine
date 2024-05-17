@@ -1,0 +1,4 @@
+*.out
+.fleet
+.coverage
+__pycache__

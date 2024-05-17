@@ -1,6 +1,6 @@
 import enum
-from collections import namedtuple
 import json
+from collections import namedtuple
 
 MEMORY_SIZE = 1048567
 MAX_NUMBER = 1 << 31 - 1
@@ -14,6 +14,7 @@ INDERECTION_ADDRESS = 1
 REGISTER_ADDRESS = 2
 NO_ADDRESS = 3
 PORT_ADDRESS = 4
+
 
 class Opcode(str, enum.Enum):
     LOAD = "load"  # Загрузка значения из памяти в регистр
@@ -46,12 +47,12 @@ class Opcode(str, enum.Enum):
 
 
 class Term(namedtuple("Term", "index related_label")):
-    """ Тип может быть:
-            0 - прямая
-            1 - косвенная
-            2 - регистр
-            3 - безадрессная
-            4 - портовая адресация
+    """Тип может быть:
+    0 - прямая
+    1 - косвенная
+    2 - регистр
+    3 - безадрессная
+    4 - портовая адресация
     """
 
 
@@ -72,7 +73,6 @@ def read_code(filename):
     for instr in code:
         if "opcode" in instr:
             instr["opcode"] = Opcode(instr["opcode"])
-
 
         # Конвертация списка term в класс Term
         if "term" in instr:
