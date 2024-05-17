@@ -39,7 +39,7 @@ class Opcode(str, enum.Enum):
 
     HALT = "halt"  # Остановка выполнения программы
 
-    IRET = "iret"  # Остановка выполнения программы
+    IRET = "iret"  # Возврат из прерывания
 
     def __str__(self):
         """`Opcode.INC` - `increment`."""
