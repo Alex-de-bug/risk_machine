@@ -15,6 +15,7 @@ def remove_comments_and_blank_lines(code: str) -> list:
             cleaned_lines.append(stripped_line)
     return cleaned_lines
 
+
 def process_data_section_in_list_inplace(code_lines: list) -> None:
     """
     Модифицирует секцию .data в предоставленном списке строк ASM кода, преобразуя строки в Unicode значения,
@@ -36,15 +37,19 @@ def process_data_section_in_list_inplace(code_lines: list) -> None:
             new_lines = process_value(key, value)
             update_code_lines(code_lines, index, new_lines)
 
+
 def is_data_section_start(line: str) -> bool:
     return line == ".data:"
+
 
 def is_data_section_end(in_data_section: bool, line: str) -> bool:
     return in_data_section and line.startswith(".")
 
+
 def parse_line(line: str) -> tuple:
     key, value = line.split(":", 1)
     return key.strip(), value.strip()
+
 
 def process_value(key: str, value: str) -> list:
     if "resb" in value:
@@ -53,9 +58,11 @@ def process_value(key: str, value: str) -> list:
         return process_string(key, value)
     return [f"{key}:", value]
 
+
 def process_resb(key: str, value: str) -> list:
     _, size = value.split()
     return [f"{key}:"] + ["0" for _ in range(int(size))]
+
 
 def process_string(key: str, value: str) -> list:
     new_lines = [f"{key}:"]
@@ -70,10 +77,12 @@ def process_string(key: str, value: str) -> list:
             new_lines += [str(ord(ch))]
     return new_lines
 
+
 def update_code_lines(code_lines: list, index: int, new_lines: list) -> None:
     del code_lines[index]
     for idx, item in enumerate(new_lines):
         code_lines.insert(index + idx, item)
+
 
 def process_labels(lines: list) -> dict:
     """
@@ -94,6 +103,7 @@ def process_labels(lines: list) -> dict:
             i += 1
     return labels_dict
 
+
 def translate_to_machine_word(labels: dict, lines: list) -> list:
     """
     Обрабатывает список строк, генерируя формат инструкций или данных, подставляя метки.
@@ -107,6 +117,7 @@ def translate_to_machine_word(labels: dict, lines: list) -> list:
     append_interrupt_label(code, labels)
     return code
 
+
 def process_line(pc: int, line: str, labels: dict) -> dict:
     line_term = line.split(" ")
     op = line_term[0]
@@ -114,6 +125,7 @@ def process_line(pc: int, line: str, labels: dict) -> dict:
     if op in [opcode.value for opcode in Opcode]:
         return process_opcode(pc, op, line_term, labels)
     return process_data(pc, op, labels)
+
 
 def process_opcode(pc: int, op: str, line_term: list, labels: dict) -> dict:
     if op in ["load", "store"]:
@@ -128,6 +140,7 @@ def process_opcode(pc: int, op: str, line_term: list, labels: dict) -> dict:
         return process_move(op, line_term, pc)
     return {}
 
+
 def process_load_store(op: str, line_term: list, labels: dict, pc: int) -> dict:
     num_first_reg = int(line_term[1][1:-1])
     if "(" in line_term[2]:
@@ -135,6 +148,7 @@ def process_load_store(op: str, line_term: list, labels: dict, pc: int) -> dict:
         return {"opcode": op, "reg": num_first_reg, "op": addr, "addrType": 1, "term": Term(pc, line_term[2][1:-1])}
     addr = labels.get(line_term[2])
     return {"opcode": op, "reg": num_first_reg, "op": addr, "addrType": 0, "term": Term(pc, line_term[2])}
+
 
 def process_arithmetic(op: str, line_term: list, pc: int) -> dict:
     if len(line_term) == 2:
@@ -151,6 +165,7 @@ def process_arithmetic(op: str, line_term: list, pc: int) -> dict:
         return {"opcode": op, "op1": num_1_reg, "op2": num_2_reg, "op3": num_3_reg, "addrType": 2, "term": Term(pc, "")}
     return {}
 
+
 def process_single_op(op: str, line_term: list, pc: int) -> dict:
     if len(line_term) == 1:
         return {"opcode": op, "addrType": 3, "term": Term(pc, "")}
@@ -160,9 +175,11 @@ def process_single_op(op: str, line_term: list, pc: int) -> dict:
         return {"opcode": op, "reg": num_first_reg, "op": num_port, "addrType": 4, "term": Term(pc, "")}
     return {}
 
+
 def process_jump(op: str, line_term: list, labels: dict, pc: int) -> dict:
     addr = int(labels.get(line_term[1]))
     return {"opcode": op, "op": addr, "addrType": 0, "term": Term(pc, line_term[1])}
+
 
 def process_move(op: str, line_term: list, pc: int) -> dict:
     num_first_reg = int(line_term[1][1:-1])
@@ -174,16 +191,19 @@ def process_move(op: str, line_term: list, pc: int) -> dict:
         return {"opcode": op, "reg": num_first_reg, "op": value, "addrType": 0, "term": Term(pc, "")}
     return {}
 
+
 def process_data(pc: int, op: str, labels: dict) -> dict:
     if op.isdigit():
         return {"data": int(op), "term": Term(pc, "")}
     return {"data": labels.get(op), "term": Term(pc, op)}
+
 
 def append_interrupt_label(code: list, labels: dict) -> None:
     if ".int1" in labels:
         code.append({"int1": labels.get(".int1")})
     else:
         code.append({"int1": "-"})
+
 
 def translate(text):
     clear_lines = remove_comments_and_blank_lines(text)
@@ -200,6 +220,7 @@ def main(source, target):
     code = translate(source)
     write_code(target, code)
     print("source LoC:", len(source.split("\n")), "code instr:", len(code))
+
 
 if __name__ == "__main__":
     assert len(sys.argv) == 3, "Wrong arguments: translator.py <input_file> <target_file>"

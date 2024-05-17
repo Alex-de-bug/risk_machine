@@ -667,17 +667,21 @@ if __name__ == "__main__":
     _, code_file, input_file = sys.argv
     main(code_file, input_file)
 
+
 class InvalidRegisterNumberError(ValueError):
     def __init__(self):
         super().__init__("Invalid register number")
+
 
 class InvalidInputPortNumberError(ValueError):
     def __init__(self):
         super().__init__("Invalid input port number")
 
+
 class MemoryCellError(AssertionError):
     def __init__(self, address):
         super().__init__(f"Memory doesn't have cell with index {address}")
+
 
 class UnknownALUCommandError(AssertionError):
     def __init__(self, opcode):
