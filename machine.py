@@ -183,7 +183,7 @@ class PortManager:
 
     @staticmethod
     def int_signal(interruption_controller, address_int: int) -> None:
-        """Генерация прерывания от имени порта"""
+        """Генерация прерывания от имени порт менеджера"""
         interruption_controller.generate_interruption(address_int)
 
     def read_buffer(self) -> None:
