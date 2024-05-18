@@ -11,3 +11,6 @@ test:
 
 test-update-golden:
 	poetry run pytest . -v --update-goldens
+
+
+# source ~/path/to/venv/bin/activate
