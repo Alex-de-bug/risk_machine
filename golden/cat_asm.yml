@@ -15,7 +15,7 @@ in_source: |-
       out r1, 1
       iret
 in_stdin: |-
-  [(0, 'A'), (100, 'l'), (200, 'e'), (300, 'x'), (600, '0')]
+  [(0, 'A'), (100, 'l'), (200, 'e'), (300, 'x'), (300, 'x'), (300, 'x'), (300, 'x'), (600, '0')]
 out_code: |-
   [{"opcode": "jmp", "op": 1, "addrType": 0, "term": [0, ".text"]},
    {"opcode": "ei", "addrType": 3, "term": [1, ""]},
@@ -53,15 +53,15 @@ out_log: |
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
   	TICK: 5   PC: 2   Z_FLAG:   0 
-  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: ei| ipc: 0 |  PC + 1 -> PC | 	[instruction: ei #1] |PORT_0: 0 |PORT_1: 0| 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: ei| ipc: 0 |  INT_OFF; PC + 1 -> PC | 	[instruction: ei #1] |PORT_0: 0 |PORT_1: 0| 
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
-  	TICK: 6   PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: ei| ipc: 0 |  PC -> R12; ADDR_INT -> PC | 	[instruction: ei #1] |PORT_0: 65 |PORT_1: 0| 
+  	TICK: 6   PC: 2   Z_FLAG:   0 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: ei| ipc: 0 |  PC -> R12 | 	[instruction: ei #1] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 7   PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: ei| ipc: 0 |  MEM[PC] -> AR | 	[instruction: ei #1] |PORT_0: 65 |PORT_1: 0| 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: ei| ipc: 0 |  ADDR_INT_VEC -> PC; MEM[PC] -> AR | 	[instruction: ei #1] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 8   PC: 4   Z_FLAG:   0 
@@ -87,7 +87,7 @@ out_log: |
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 13  PC: 5   Z_FLAG:   0 
-  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  #48 -> R2 | 	[instruction: move #5] |PORT_0: 65 |PORT_1: 0| 
+  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  IR(OPERAND) -> R2 | 	[instruction: move #5] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 14  PC: 6   Z_FLAG:   0 
@@ -120,7 +120,7 @@ out_log: |
   DEBUG   machine:execute_out   output: '' << 'A'
   DEBUG   machine:tick          
   	TICK: 21  PC: 9   Z_FLAG:   0 
-  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 65 |PORT_1: 65| 
+  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  R1 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 65 |PORT_1: 65| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 22  PC: 9   Z_FLAG:   0 
@@ -443,12 +443,12 @@ out_log: |
   	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  IR(OPERAND) -> PC | 	[instruction: jmp #2] |PORT_0: 65 |PORT_1: 65| 
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
-  	TICK: 102 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12; ADDR_INT -> PC | 	[instruction: jmp #2] |PORT_0: 108 |PORT_1: 65| 
+  	TICK: 102 PC: 2   Z_FLAG:   0 
+  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12 | 	[instruction: jmp #2] |PORT_0: 108 |PORT_1: 65| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 103 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 108 |PORT_1: 65| 
+  	r0: 0 |  r1: 65|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  ADDR_INT_VEC -> PC; MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 108 |PORT_1: 65| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 104 PC: 4   Z_FLAG:   0 
@@ -474,7 +474,7 @@ out_log: |
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 109 PC: 5   Z_FLAG:   0 
-  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  #48 -> R2 | 	[instruction: move #5] |PORT_0: 108 |PORT_1: 65| 
+  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  IR(OPERAND) -> R2 | 	[instruction: move #5] |PORT_0: 108 |PORT_1: 65| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 110 PC: 6   Z_FLAG:   0 
@@ -507,7 +507,7 @@ out_log: |
   DEBUG   machine:execute_out   output: 'A' << 'l'
   DEBUG   machine:tick          
   	TICK: 117 PC: 9   Z_FLAG:   0 
-  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 108 |PORT_1: 108| 
+  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  R1 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 118 PC: 9   Z_FLAG:   0 
@@ -846,12 +846,12 @@ out_log: |
   	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  IR(OPERAND) -> PC | 	[instruction: jmp #2] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
-  	TICK: 202 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12; ADDR_INT -> PC | 	[instruction: jmp #2] |PORT_0: 101 |PORT_1: 108| 
+  	TICK: 202 PC: 2   Z_FLAG:   0 
+  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12 | 	[instruction: jmp #2] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 203 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 101 |PORT_1: 108| 
+  	r0: 0 |  r1: 108|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  ADDR_INT_VEC -> PC; MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 204 PC: 4   Z_FLAG:   0 
@@ -877,7 +877,7 @@ out_log: |
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 209 PC: 5   Z_FLAG:   0 
-  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  #48 -> R2 | 	[instruction: move #5] |PORT_0: 101 |PORT_1: 108| 
+  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  IR(OPERAND) -> R2 | 	[instruction: move #5] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 210 PC: 6   Z_FLAG:   0 
@@ -910,7 +910,7 @@ out_log: |
   DEBUG   machine:execute_out   output: 'Al' << 'e'
   DEBUG   machine:tick          
   	TICK: 217 PC: 9   Z_FLAG:   0 
-  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 101 |PORT_1: 101| 
+  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  R1 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 101 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 218 PC: 9   Z_FLAG:   0 
@@ -1249,12 +1249,12 @@ out_log: |
   	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  IR(OPERAND) -> PC | 	[instruction: jmp #2] |PORT_0: 101 |PORT_1: 101| 
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
-  	TICK: 302 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12; ADDR_INT -> PC | 	[instruction: jmp #2] |PORT_0: 120 |PORT_1: 101| 
+  	TICK: 302 PC: 2   Z_FLAG:   0 
+  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12 | 	[instruction: jmp #2] |PORT_0: 120 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 303 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 120 |PORT_1: 101| 
+  	r0: 0 |  r1: 101|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  ADDR_INT_VEC -> PC; MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 120 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 304 PC: 4   Z_FLAG:   0 
@@ -1280,7 +1280,7 @@ out_log: |
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 309 PC: 5   Z_FLAG:   0 
-  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  #48 -> R2 | 	[instruction: move #5] |PORT_0: 120 |PORT_1: 101| 
+  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  IR(OPERAND) -> R2 | 	[instruction: move #5] |PORT_0: 120 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 310 PC: 6   Z_FLAG:   0 
@@ -1313,7 +1313,7 @@ out_log: |
   DEBUG   machine:execute_out   output: 'Ale' << 'x'
   DEBUG   machine:tick          
   	TICK: 317 PC: 9   Z_FLAG:   0 
-  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 120 |PORT_1: 120| 
+  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: out| ipc: 0 |  R1 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #8] |PORT_0: 120 |PORT_1: 120| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 318 PC: 9   Z_FLAG:   0 
@@ -2452,12 +2452,12 @@ out_log: |
   	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  IR(OPERAND) -> PC | 	[instruction: jmp #2] |PORT_0: 120 |PORT_1: 120| 
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
-  	TICK: 602 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12; ADDR_INT -> PC | 	[instruction: jmp #2] |PORT_0: 48 |PORT_1: 120| 
+  	TICK: 602 PC: 2   Z_FLAG:   0 
+  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 1 | ir: jmp| ipc: 0 |  PC -> R12 | 	[instruction: jmp #2] |PORT_0: 48 |PORT_1: 120| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 603 PC: 1048566 Z_FLAG:   0 
-  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 48 |PORT_1: 120| 
+  	r0: 0 |  r1: 120|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: {'int1': 4}| ir: jmp| ipc: 0 |  ADDR_INT_VEC -> PC; MEM[PC] -> AR | 	[instruction: jmp #2] |PORT_0: 48 |PORT_1: 120| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 604 PC: 4   Z_FLAG:   0 
@@ -2483,7 +2483,7 @@ out_log: |
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 609 PC: 5   Z_FLAG:   0 
-  	r0: 0 |  r1: 48|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  #48 -> R2 | 	[instruction: move #5] |PORT_0: 48 |PORT_1: 120| 
+  	r0: 0 |  r1: 48|  r2: 48| r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 2 | ar: 0 | ir: move| ipc: 0 |  IR(OPERAND) -> R2 | 	[instruction: move #5] |PORT_0: 48 |PORT_1: 120| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: True | INT_HANDLING: True | 
   DEBUG   machine:tick          
   	TICK: 610 PC: 6   Z_FLAG:   0 

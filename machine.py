@@ -158,15 +158,15 @@ class Alu:
 
 class InterruptionController:
     interruption: bool = None
-    interruption_vector_address: int = None
+    interruption_address: int = None
 
     def __init__(self):
         self.interruption = False
-        self.interruption_vector_address = 0
+        self.interruption_address = 0
 
     def generate_interruption(self, number: int) -> None:
         self.interruption = True
-        self.interruption_vector_address = number
+        self.interruption_address = number
 
 
 class PortManager:
@@ -301,7 +301,7 @@ class ControlUnit:
         inter = "CONTROLLER_INT: {}".format(self.data_path.interruption_controller.interruption)
         if self.data_path.interruption_controller.interruption:
             addr_int_vec = " | INT_VECTOR_ADDR: {} |".format(
-                self.data_path.interruption_controller.interruption_vector_address
+                self.data_path.interruption_controller.interruption_address
             )
             inter_cu = " INT_ENABLED: {} |".format(self.interruption_enabled)
             handling_int = " INT_HANDLING: {} |".format(self.handling_interruption)
@@ -344,7 +344,7 @@ class ControlUnit:
     def execute_halt(self):
         raise StopIteration()
 
-    def address_selection(self):
+    def operand_fetch(self):
         self.data_path.register_file.sel_right_reg(14)
         self.data_path.register_file.latch_reg_n(
             13, self.data_path.alu.cut_operand(self.data_path.register_file.right_out)
@@ -353,31 +353,33 @@ class ControlUnit:
 
         if self.data_path.register_file.ir.get("addrType") == INDERECTION_ADDRESS:
             self.data_path.register_file.latch_reg_n(15, self.data_path.pc)
+            self.tick("PC -> IPC")
             self.data_path.register_file.sel_right_reg(13)
             self.data_path.signal_latch_pc(
                 self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add"))
             )
-            self.tick("PC -> IPC; 0 + AR -> PC")
 
             self.data_path.register_file.latch_reg_n(
                 13, self.data_path.signal_read_memory(self.data_path.pc).get("data")
             )
+            self.tick("0 + AR -> PC; MEM[PC] - > AR")
             self.data_path.register_file.sel_right_reg(13)
             self.data_path.signal_latch_pc(
                 self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add"))
             )
-            self.tick("MEM[PC] - > AR; 0 + AR -> PC")
+            self.tick("0 + AR -> PC")
 
         elif self.data_path.register_file.ir.get("addrType") == DIRECTION_ADDRESS:
             self.data_path.register_file.latch_reg_n(15, self.data_path.pc)
+            self.tick("PC -> IPC")
             self.data_path.register_file.sel_right_reg(13)
             self.data_path.signal_latch_pc(
                 self.data_path.alu.perform(0, self.data_path.register_file.right_out, Opcode("add"))
             )
-            self.tick("PC -> IPC; 0 + AR -> PC")
+            self.tick("0 + AR -> PC")
 
     def execute_load(self):
-        self.address_selection()
+        self.operand_fetch()
 
         data_out = self.data_path.signal_read_memory(self.data_path.pc).get("data")
         self.data_path.register_file.latch_reg_n(self.data_path.register_file.ir.get("reg"), data_out)
@@ -390,7 +392,7 @@ class ControlUnit:
         self.tick("1 + IPC -> PC")
 
     def execute_store(self):
-        self.address_selection()
+        self.operand_fetch()
 
         self.data_path.register_file.sel_right_reg(self.data_path.register_file.ir.get("reg"))
         self.data_path.signal_write_memory(self.data_path.pc, self.data_path.register_file.right_out)
@@ -505,13 +507,7 @@ class ControlUnit:
                 self.data_path.register_file.ir.get("reg"),
                 self.data_path.alu.cut_operand(self.data_path.register_file.right_out),
             )
-            self.tick(
-                "#"
-                + str(self.data_path.register_file.ir.get("op"))
-                + " -> "
-                + "R"
-                + str(self.data_path.register_file.ir.get("reg"))
-            )
+            self.tick("IR(OPERAND) -> " + "R" + str(self.data_path.register_file.ir.get("reg")))
 
         self.data_path.signal_latch_pc(self.data_path.pc + 1)
         self.tick("PC + 1 -> PC")
@@ -528,12 +524,12 @@ class ControlUnit:
     def execute_ei(self):
         self.interruption_enabled = True
         self.data_path.signal_latch_pc(self.data_path.pc + 1)
-        self.tick("PC + 1 -> PC")
+        self.tick("INT_OFF; PC + 1 -> PC")
 
     def execute_di(self):
         self.interruption_enabled = False
         self.data_path.signal_latch_pc(self.data_path.pc + 1)
-        self.tick("PC + 1 -> PC")
+        self.tick("INT_ON; PC + 1 -> PC")
 
     def execute_in(self):
         logging.debug("input: %s", repr(chr(self.data_path.port_manager.port_0)))
@@ -569,7 +565,7 @@ class ControlUnit:
             )
             self.data_path.port_manager.write_buffer()
             self.data_path.signal_latch_pc(self.data_path.pc + 1)
-            self.tick("PC + 1 -> PC")
+            self.tick("R" + str(self.data_path.register_file.ir.get("reg")) + " + 0 -> PORT_1; PC + 1 -> PC")
         else:
             raise InvalidInputPortNumberError()
 
@@ -593,11 +589,11 @@ class ControlUnit:
 
         self.handling_interruption = True
         self.data_path.register_file.latch_reg_n(12, self.data_path.pc)
-        self.data_path.signal_latch_pc(self.data_path.interruption_controller.interruption_vector_address)
-        self.tick("PC -> R12; ADDR_INT -> PC")
+        self.tick("PC -> R12")
 
+        self.data_path.signal_latch_pc(self.data_path.interruption_controller.interruption_address)
         self.data_path.register_file.latch_reg_n(13, self.data_path.signal_read_memory(self.data_path.pc))
-        self.tick("MEM[PC] -> AR")
+        self.tick("ADDR_INT_VEC -> PC; MEM[PC] -> AR")
 
         self.data_path.register_file.sel_right_reg(13)
         self.data_path.signal_latch_pc(
@@ -613,8 +609,8 @@ def initiate_interruption(control_unit, input_tokens):
     if len(input_tokens) != 0:
         next_token = input_tokens[0]
         if control_unit.tick_counter >= next_token[0]:
-            address = len(control_unit.data_path.memory) - 1
-            control_unit.data_path.port_manager.int_signal(control_unit.data_path.interruption_controller, address)
+            address_int = len(control_unit.data_path.memory) - 1
+            control_unit.data_path.port_manager.int_signal(control_unit.data_path.interruption_controller, address_int)
             if next_token[1]:
                 control_unit.data_path.port_manager.input_buffer = next_token[1]
                 control_unit.data_path.port_manager.read_buffer()

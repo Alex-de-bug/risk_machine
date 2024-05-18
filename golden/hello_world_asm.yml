@@ -21,7 +21,7 @@ in_source: |-
       .end:
           halt
 in_stdin: |-
-  [(0, 'A'), (100, 'l'), (200, 'e'), (300, 'x'), (600, '0')]
+  [(0, 'A'), (100, 'l'), (200, 'e'), (300, 'x'), (300, 'x'), (300, 'x'), (300, 'x'), (600, '0')]
 out_code: |-
   [{"opcode": "jmp", "op": 15, "addrType": 0, "term": [0, ".text"]},
    {"data": 72, "term": [1, ""]},
@@ -54,7 +54,7 @@ out_stdout: |
   ============================================================
   Hello world!
 
-  instr_counter: 102 ticks: 353
+  instr_counter: 102 ticks: 390
 out_log: |
   DEBUG   machine:tick          
   	TICK: 1   PC: 0   Z_FLAG:   0 
@@ -74,7 +74,7 @@ out_log: |
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
   	TICK: 5   PC: 15  Z_FLAG:   0 
-  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 15| ir: move| ipc: 0 |  #0 -> R3 | 	[instruction: move #15] |PORT_0: 0 |PORT_1: 0| 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 15| ir: move| ipc: 0 |  IR(OPERAND) -> R3 | 	[instruction: move #15] |PORT_0: 0 |PORT_1: 0| 
    	CONTROLLER_INT: False 
   DEBUG   machine:tick          
   	TICK: 6   PC: 16  Z_FLAG:   0 
@@ -89,1394 +89,1542 @@ out_log: |
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 0 |  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 9   PC: 14  Z_FLAG:   0 
-  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
+  	TICK: 9   PC: 16  Z_FLAG:   0 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 10  PC: 1   Z_FLAG:   0 
-  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
+  	TICK: 10  PC: 14  Z_FLAG:   0 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 11  PC: 1   Z_FLAG:   0 
+  	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 12  PC: 1   Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 12  PC: 17  Z_FLAG:   0 
+  	TICK: 13  PC: 17  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 13  PC: 17  Z_FLAG:   0 
+  	TICK: 14  PC: 17  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 14  PC: 18  Z_FLAG:   0 
+  	TICK: 15  PC: 18  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 15  PC: 18  Z_FLAG:   0 
+  	TICK: 16  PC: 18  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 16  PC: 19  Z_FLAG:   0 
+  	TICK: 17  PC: 19  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 17  PC: 19  Z_FLAG:   0 
+  	TICK: 18  PC: 19  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 18  PC: 19  Z_FLAG:   0 
+  	TICK: 19  PC: 19  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 0| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: '' << 'H'
   DEBUG   machine:tick          
-  	TICK: 19  PC: 20  Z_FLAG:   0 
-  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 72| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
   	TICK: 20  PC: 20  Z_FLAG:   0 
-  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
+  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 21  PC: 20  Z_FLAG:   0 
+  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 22  PC: 20  Z_FLAG:   0 
   	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 22  PC: 14  Z_FLAG:   0 
-  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
+  	TICK: 23  PC: 20  Z_FLAG:   0 
+  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 23  PC: 14  Z_FLAG:   0 
+  	TICK: 24  PC: 14  Z_FLAG:   0 
+  	r0: 72|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 25  PC: 14  Z_FLAG:   0 
   	r0: 1 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 24  PC: 21  Z_FLAG:   0 
+  	TICK: 26  PC: 21  Z_FLAG:   0 
   	r0: 1 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 25  PC: 21  Z_FLAG:   0 
+  	TICK: 27  PC: 21  Z_FLAG:   0 
   	r0: 1 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 26  PC: 21  Z_FLAG:   0 
+  	TICK: 28  PC: 21  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 27  PC: 22  Z_FLAG:   0 
+  	TICK: 29  PC: 22  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 28  PC: 22  Z_FLAG:   0 
+  	TICK: 30  PC: 22  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 29  PC: 22  Z_FLAG:   0 
+  	TICK: 31  PC: 22  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 30  PC: 14  Z_FLAG:   0 
-  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
+  	TICK: 32  PC: 22  Z_FLAG:   0 
+  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 31  PC: 14  Z_FLAG:   0 
+  	TICK: 33  PC: 14  Z_FLAG:   0 
+  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 34  PC: 14  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 32  PC: 23  Z_FLAG:   0 
+  	TICK: 35  PC: 23  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 33  PC: 23  Z_FLAG:   0 
+  	TICK: 36  PC: 23  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 34  PC: 16  Z_FLAG:   0 
+  	TICK: 37  PC: 16  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 35  PC: 16  Z_FLAG:   0 
+  	TICK: 38  PC: 16  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 36  PC: 16  Z_FLAG:   0 
+  	TICK: 39  PC: 16  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 37  PC: 14  Z_FLAG:   0 
-  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
+  	TICK: 40  PC: 16  Z_FLAG:   0 
+  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 38  PC: 2   Z_FLAG:   0 
-  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
+  	TICK: 41  PC: 14  Z_FLAG:   0 
+  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 39  PC: 2   Z_FLAG:   0 
+  	TICK: 42  PC: 2   Z_FLAG:   0 
+  	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 43  PC: 2   Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 40  PC: 17  Z_FLAG:   0 
+  	TICK: 44  PC: 17  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 41  PC: 17  Z_FLAG:   0 
+  	TICK: 45  PC: 17  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 42  PC: 18  Z_FLAG:   0 
+  	TICK: 46  PC: 18  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 43  PC: 18  Z_FLAG:   0 
+  	TICK: 47  PC: 18  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 44  PC: 19  Z_FLAG:   0 
+  	TICK: 48  PC: 19  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 45  PC: 19  Z_FLAG:   0 
+  	TICK: 49  PC: 19  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 2 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 46  PC: 19  Z_FLAG:   0 
+  	TICK: 50  PC: 19  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 72| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'H' << 'e'
   DEBUG   machine:tick          
-  	TICK: 47  PC: 20  Z_FLAG:   0 
-  	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 101| 
+  	TICK: 51  PC: 20  Z_FLAG:   0 
+  	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 48  PC: 20  Z_FLAG:   0 
+  	TICK: 52  PC: 20  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 49  PC: 20  Z_FLAG:   0 
+  	TICK: 53  PC: 20  Z_FLAG:   0 
   	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 50  PC: 14  Z_FLAG:   0 
-  	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
+  	TICK: 54  PC: 20  Z_FLAG:   0 
+  	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 51  PC: 14  Z_FLAG:   0 
+  	TICK: 55  PC: 14  Z_FLAG:   0 
+  	r0: 101|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 56  PC: 14  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 52  PC: 21  Z_FLAG:   0 
+  	TICK: 57  PC: 21  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 53  PC: 21  Z_FLAG:   0 
+  	TICK: 58  PC: 21  Z_FLAG:   0 
   	r0: 2 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 54  PC: 21  Z_FLAG:   0 
+  	TICK: 59  PC: 21  Z_FLAG:   0 
   	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 55  PC: 22  Z_FLAG:   0 
+  	TICK: 60  PC: 22  Z_FLAG:   0 
   	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 56  PC: 22  Z_FLAG:   0 
+  	TICK: 61  PC: 22  Z_FLAG:   0 
   	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 57  PC: 22  Z_FLAG:   0 
+  	TICK: 62  PC: 22  Z_FLAG:   0 
   	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 58  PC: 14  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
+  	TICK: 63  PC: 22  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 59  PC: 14  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 60  PC: 23  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 61  PC: 23  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 101| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 62  PC: 16  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 101| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 63  PC: 16  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 64  PC: 16  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+  	TICK: 64  PC: 14  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 65  PC: 14  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 66  PC: 3   Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+  	TICK: 66  PC: 23  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 67  PC: 3   Z_FLAG:   0 
+  	TICK: 67  PC: 23  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 68  PC: 16  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 69  PC: 16  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 70  PC: 16  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 71  PC: 16  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 72  PC: 14  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 73  PC: 3   Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 74  PC: 3   Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 68  PC: 17  Z_FLAG:   0 
+  	TICK: 75  PC: 17  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 69  PC: 17  Z_FLAG:   0 
+  	TICK: 76  PC: 17  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 70  PC: 18  Z_FLAG:   0 
+  	TICK: 77  PC: 18  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 71  PC: 18  Z_FLAG:   0 
+  	TICK: 78  PC: 18  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 72  PC: 19  Z_FLAG:   0 
+  	TICK: 79  PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 73  PC: 19  Z_FLAG:   0 
+  	TICK: 80  PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 3 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 74  PC: 19  Z_FLAG:   0 
+  	TICK: 81  PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 101| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'He' << 'l'
   DEBUG   machine:tick          
-  	TICK: 75  PC: 20  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 82  PC: 20  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 76  PC: 20  Z_FLAG:   0 
+  	TICK: 83  PC: 20  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 77  PC: 20  Z_FLAG:   0 
+  	TICK: 84  PC: 20  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 78  PC: 14  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 79  PC: 14  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 80  PC: 21  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 81  PC: 21  Z_FLAG:   0 
-  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 82  PC: 21  Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 83  PC: 22  Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 84  PC: 22  Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 85  PC: 22  Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 85  PC: 20  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 86  PC: 14  Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 87  PC: 14  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 88  PC: 21  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 89  PC: 21  Z_FLAG:   0 
+  	r0: 3 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 90  PC: 21  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 91  PC: 22  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 92  PC: 22  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 93  PC: 22  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 94  PC: 22  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 95  PC: 14  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 96  PC: 14  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 88  PC: 23  Z_FLAG:   0 
+  	TICK: 97  PC: 23  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 89  PC: 23  Z_FLAG:   0 
+  	TICK: 98  PC: 23  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 90  PC: 16  Z_FLAG:   0 
+  	TICK: 99  PC: 16  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 91  PC: 16  Z_FLAG:   0 
+  	TICK: 100 PC: 16  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 92  PC: 16  Z_FLAG:   0 
+  	TICK: 101 PC: 16  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 93  PC: 14  Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 102 PC: 16  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 94  PC: 4   Z_FLAG:   0 
-  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 103 PC: 14  Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 95  PC: 4   Z_FLAG:   0 
+  	TICK: 104 PC: 4   Z_FLAG:   0 
+  	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 105 PC: 4   Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 96  PC: 17  Z_FLAG:   0 
+  	TICK: 106 PC: 17  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 65 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 97  PC: 17  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 107 PC: 17  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 98  PC: 18  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 108 PC: 18  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 99  PC: 18  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 109 PC: 18  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 100 PC: 19  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 65 |PORT_1: 108| 
+  	TICK: 110 PC: 19  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 101 PC: 19  Z_FLAG:   0 
+  	TICK: 111 PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 4 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 102 PC: 19  Z_FLAG:   0 
+  	TICK: 112 PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hel' << 'l'
   DEBUG   machine:tick          
-  	TICK: 103 PC: 20  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 108| 
+  	TICK: 113 PC: 20  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 104 PC: 20  Z_FLAG:   0 
+  	TICK: 114 PC: 20  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 105 PC: 20  Z_FLAG:   0 
+  	TICK: 115 PC: 20  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 106 PC: 14  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
+  	TICK: 116 PC: 20  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 107 PC: 14  Z_FLAG:   0 
+  	TICK: 117 PC: 14  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 118 PC: 14  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 108 PC: 21  Z_FLAG:   0 
+  	TICK: 119 PC: 21  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 109 PC: 21  Z_FLAG:   0 
+  	TICK: 120 PC: 21  Z_FLAG:   0 
   	r0: 4 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 110 PC: 21  Z_FLAG:   0 
+  	TICK: 121 PC: 21  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 111 PC: 22  Z_FLAG:   0 
+  	TICK: 122 PC: 22  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 112 PC: 22  Z_FLAG:   0 
+  	TICK: 123 PC: 22  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 113 PC: 22  Z_FLAG:   0 
+  	TICK: 124 PC: 22  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 114 PC: 14  Z_FLAG:   0 
-  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
+  	TICK: 125 PC: 22  Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 115 PC: 14  Z_FLAG:   0 
+  	TICK: 126 PC: 14  Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 127 PC: 14  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 116 PC: 23  Z_FLAG:   0 
+  	TICK: 128 PC: 23  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 117 PC: 23  Z_FLAG:   0 
+  	TICK: 129 PC: 23  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 118 PC: 16  Z_FLAG:   0 
+  	TICK: 130 PC: 16  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 119 PC: 16  Z_FLAG:   0 
+  	TICK: 131 PC: 16  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 120 PC: 16  Z_FLAG:   0 
+  	TICK: 132 PC: 16  Z_FLAG:   0 
   	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 121 PC: 14  Z_FLAG:   0 
-  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
+  	TICK: 133 PC: 16  Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 122 PC: 5   Z_FLAG:   0 
-  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
+  	TICK: 134 PC: 14  Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 123 PC: 5   Z_FLAG:   0 
+  	TICK: 135 PC: 5   Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 136 PC: 5   Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 124 PC: 17  Z_FLAG:   0 
+  	TICK: 137 PC: 17  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 125 PC: 17  Z_FLAG:   0 
+  	TICK: 138 PC: 17  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 126 PC: 18  Z_FLAG:   0 
+  	TICK: 139 PC: 18  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 127 PC: 18  Z_FLAG:   0 
+  	TICK: 140 PC: 18  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 128 PC: 19  Z_FLAG:   0 
+  	TICK: 141 PC: 19  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 129 PC: 19  Z_FLAG:   0 
+  	TICK: 142 PC: 19  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 5 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 130 PC: 19  Z_FLAG:   0 
+  	TICK: 143 PC: 19  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hell' << 'o'
   DEBUG   machine:tick          
-  	TICK: 131 PC: 20  Z_FLAG:   0 
-  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 111| 
+  	TICK: 144 PC: 20  Z_FLAG:   0 
+  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 132 PC: 20  Z_FLAG:   0 
+  	TICK: 145 PC: 20  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 133 PC: 20  Z_FLAG:   0 
+  	TICK: 146 PC: 20  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 134 PC: 14  Z_FLAG:   0 
-  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
+  	TICK: 147 PC: 20  Z_FLAG:   0 
+  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 135 PC: 14  Z_FLAG:   0 
-  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 136 PC: 21  Z_FLAG:   0 
-  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 137 PC: 21  Z_FLAG:   0 
-  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 138 PC: 21  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 139 PC: 22  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 140 PC: 22  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 141 PC: 22  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 142 PC: 14  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 143 PC: 14  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 144 PC: 23  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 145 PC: 23  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 146 PC: 16  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 147 PC: 16  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 148 PC: 16  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+  	TICK: 148 PC: 14  Z_FLAG:   0 
+  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 149 PC: 14  Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 150 PC: 6   Z_FLAG:   0 
-  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+  	TICK: 150 PC: 21  Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 151 PC: 6   Z_FLAG:   0 
+  	TICK: 151 PC: 21  Z_FLAG:   0 
+  	r0: 5 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 152 PC: 21  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 153 PC: 22  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 154 PC: 22  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 155 PC: 22  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 156 PC: 22  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 157 PC: 14  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 158 PC: 14  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 159 PC: 23  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 160 PC: 23  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 161 PC: 16  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 162 PC: 16  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 163 PC: 16  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 164 PC: 16  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 165 PC: 14  Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 166 PC: 6   Z_FLAG:   0 
+  	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 167 PC: 6   Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 152 PC: 17  Z_FLAG:   0 
+  	TICK: 168 PC: 17  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 153 PC: 17  Z_FLAG:   0 
+  	TICK: 169 PC: 17  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 154 PC: 18  Z_FLAG:   0 
+  	TICK: 170 PC: 18  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 155 PC: 18  Z_FLAG:   0 
+  	TICK: 171 PC: 18  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 156 PC: 19  Z_FLAG:   0 
+  	TICK: 172 PC: 19  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 157 PC: 19  Z_FLAG:   0 
+  	TICK: 173 PC: 19  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 6 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 158 PC: 19  Z_FLAG:   0 
+  	TICK: 174 PC: 19  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hello' << ' '
   DEBUG   machine:tick          
-  	TICK: 159 PC: 20  Z_FLAG:   0 
-  	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 175 PC: 20  Z_FLAG:   0 
+  	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 160 PC: 20  Z_FLAG:   0 
+  	TICK: 176 PC: 20  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 161 PC: 20  Z_FLAG:   0 
+  	TICK: 177 PC: 20  Z_FLAG:   0 
   	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 162 PC: 14  Z_FLAG:   0 
-  	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 178 PC: 20  Z_FLAG:   0 
+  	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 163 PC: 14  Z_FLAG:   0 
+  	TICK: 179 PC: 14  Z_FLAG:   0 
+  	r0: 32|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 180 PC: 14  Z_FLAG:   0 
   	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 164 PC: 21  Z_FLAG:   0 
+  	TICK: 181 PC: 21  Z_FLAG:   0 
   	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 165 PC: 21  Z_FLAG:   0 
+  	TICK: 182 PC: 21  Z_FLAG:   0 
   	r0: 6 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 166 PC: 21  Z_FLAG:   0 
+  	TICK: 183 PC: 21  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 167 PC: 22  Z_FLAG:   0 
+  	TICK: 184 PC: 22  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 168 PC: 22  Z_FLAG:   0 
+  	TICK: 185 PC: 22  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 169 PC: 22  Z_FLAG:   0 
+  	TICK: 186 PC: 22  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 170 PC: 14  Z_FLAG:   0 
-  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 187 PC: 22  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 171 PC: 14  Z_FLAG:   0 
+  	TICK: 188 PC: 14  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 189 PC: 14  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 172 PC: 23  Z_FLAG:   0 
+  	TICK: 190 PC: 23  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 173 PC: 23  Z_FLAG:   0 
+  	TICK: 191 PC: 23  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 174 PC: 16  Z_FLAG:   0 
+  	TICK: 192 PC: 16  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 175 PC: 16  Z_FLAG:   0 
+  	TICK: 193 PC: 16  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 176 PC: 16  Z_FLAG:   0 
+  	TICK: 194 PC: 16  Z_FLAG:   0 
   	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 177 PC: 14  Z_FLAG:   0 
-  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 195 PC: 16  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 178 PC: 7   Z_FLAG:   0 
-  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 196 PC: 14  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 179 PC: 7   Z_FLAG:   0 
+  	TICK: 197 PC: 7   Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 198 PC: 7   Z_FLAG:   0 
   	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 180 PC: 17  Z_FLAG:   0 
+  	TICK: 199 PC: 17  Z_FLAG:   0 
   	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 181 PC: 17  Z_FLAG:   0 
+  	TICK: 200 PC: 17  Z_FLAG:   0 
   	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 182 PC: 18  Z_FLAG:   0 
+  	TICK: 201 PC: 18  Z_FLAG:   0 
   	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 108 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 183 PC: 18  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 202 PC: 18  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 184 PC: 19  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 203 PC: 19  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 185 PC: 19  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 204 PC: 19  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 7 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 186 PC: 19  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 32| 
+  	TICK: 205 PC: 19  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 32| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hello ' << 'w'
   DEBUG   machine:tick          
-  	TICK: 187 PC: 20  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 206 PC: 20  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 188 PC: 20  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 207 PC: 20  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 189 PC: 20  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 208 PC: 20  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 190 PC: 14  Z_FLAG:   0 
-  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 209 PC: 20  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 191 PC: 14  Z_FLAG:   0 
-  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 210 PC: 14  Z_FLAG:   0 
+  	r0: 119|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 192 PC: 21  Z_FLAG:   0 
-  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 211 PC: 14  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 193 PC: 21  Z_FLAG:   0 
-  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 212 PC: 21  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 194 PC: 21  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 213 PC: 21  Z_FLAG:   0 
+  	r0: 7 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 195 PC: 22  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 214 PC: 21  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 196 PC: 22  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 215 PC: 22  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 197 PC: 22  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 216 PC: 22  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 198 PC: 14  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 217 PC: 22  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 199 PC: 14  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 218 PC: 22  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 200 PC: 23  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 108 |PORT_1: 119| 
+  	TICK: 219 PC: 14  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 201 PC: 23  Z_FLAG:   0 
+  	TICK: 220 PC: 14  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 119| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 221 PC: 23  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 119| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 222 PC: 23  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 202 PC: 16  Z_FLAG:   0 
+  	TICK: 223 PC: 16  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 203 PC: 16  Z_FLAG:   0 
+  	TICK: 224 PC: 16  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 204 PC: 16  Z_FLAG:   0 
+  	TICK: 225 PC: 16  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 205 PC: 14  Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
+  	TICK: 226 PC: 16  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 206 PC: 8   Z_FLAG:   0 
-  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
+  	TICK: 227 PC: 14  Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 207 PC: 8   Z_FLAG:   0 
+  	TICK: 228 PC: 8   Z_FLAG:   0 
+  	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 229 PC: 8   Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 208 PC: 17  Z_FLAG:   0 
+  	TICK: 230 PC: 17  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 209 PC: 17  Z_FLAG:   0 
+  	TICK: 231 PC: 17  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 210 PC: 18  Z_FLAG:   0 
+  	TICK: 232 PC: 18  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 211 PC: 18  Z_FLAG:   0 
+  	TICK: 233 PC: 18  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 212 PC: 19  Z_FLAG:   0 
+  	TICK: 234 PC: 19  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 213 PC: 19  Z_FLAG:   0 
+  	TICK: 235 PC: 19  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 8 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 214 PC: 19  Z_FLAG:   0 
+  	TICK: 236 PC: 19  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 119| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hello w' << 'o'
   DEBUG   machine:tick          
-  	TICK: 215 PC: 20  Z_FLAG:   0 
-  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 111| 
+  	TICK: 237 PC: 20  Z_FLAG:   0 
+  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 216 PC: 20  Z_FLAG:   0 
+  	TICK: 238 PC: 20  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 217 PC: 20  Z_FLAG:   0 
+  	TICK: 239 PC: 20  Z_FLAG:   0 
   	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 218 PC: 14  Z_FLAG:   0 
-  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
+  	TICK: 240 PC: 20  Z_FLAG:   0 
+  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 219 PC: 14  Z_FLAG:   0 
+  	TICK: 241 PC: 14  Z_FLAG:   0 
+  	r0: 111|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 242 PC: 14  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 220 PC: 21  Z_FLAG:   0 
+  	TICK: 243 PC: 21  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 221 PC: 21  Z_FLAG:   0 
+  	TICK: 244 PC: 21  Z_FLAG:   0 
   	r0: 8 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 222 PC: 21  Z_FLAG:   0 
+  	TICK: 245 PC: 21  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 223 PC: 22  Z_FLAG:   0 
+  	TICK: 246 PC: 22  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 224 PC: 22  Z_FLAG:   0 
+  	TICK: 247 PC: 22  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 225 PC: 22  Z_FLAG:   0 
+  	TICK: 248 PC: 22  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 226 PC: 14  Z_FLAG:   0 
-  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
+  	TICK: 249 PC: 22  Z_FLAG:   0 
+  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 227 PC: 14  Z_FLAG:   0 
+  	TICK: 250 PC: 14  Z_FLAG:   0 
+  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 251 PC: 14  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 228 PC: 23  Z_FLAG:   0 
+  	TICK: 252 PC: 23  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 229 PC: 23  Z_FLAG:   0 
+  	TICK: 253 PC: 23  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 230 PC: 16  Z_FLAG:   0 
+  	TICK: 254 PC: 16  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 231 PC: 16  Z_FLAG:   0 
+  	TICK: 255 PC: 16  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 232 PC: 16  Z_FLAG:   0 
+  	TICK: 256 PC: 16  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 233 PC: 14  Z_FLAG:   0 
-  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
+  	TICK: 257 PC: 16  Z_FLAG:   0 
+  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 234 PC: 9   Z_FLAG:   0 
-  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
+  	TICK: 258 PC: 14  Z_FLAG:   0 
+  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 235 PC: 9   Z_FLAG:   0 
+  	TICK: 259 PC: 9   Z_FLAG:   0 
+  	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 260 PC: 9   Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 236 PC: 17  Z_FLAG:   0 
+  	TICK: 261 PC: 17  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 237 PC: 17  Z_FLAG:   0 
+  	TICK: 262 PC: 17  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 238 PC: 18  Z_FLAG:   0 
+  	TICK: 263 PC: 18  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 239 PC: 18  Z_FLAG:   0 
+  	TICK: 264 PC: 18  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 240 PC: 19  Z_FLAG:   0 
+  	TICK: 265 PC: 19  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 241 PC: 19  Z_FLAG:   0 
+  	TICK: 266 PC: 19  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 9 | ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 242 PC: 19  Z_FLAG:   0 
+  	TICK: 267 PC: 19  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 111| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hello wo' << 'r'
   DEBUG   machine:tick          
-  	TICK: 243 PC: 20  Z_FLAG:   0 
-  	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 114| 
+  	TICK: 268 PC: 20  Z_FLAG:   0 
+  	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 244 PC: 20  Z_FLAG:   0 
+  	TICK: 269 PC: 20  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 245 PC: 20  Z_FLAG:   0 
+  	TICK: 270 PC: 20  Z_FLAG:   0 
   	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 246 PC: 14  Z_FLAG:   0 
-  	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
+  	TICK: 271 PC: 20  Z_FLAG:   0 
+  	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 247 PC: 14  Z_FLAG:   0 
+  	TICK: 272 PC: 14  Z_FLAG:   0 
+  	r0: 114|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 273 PC: 14  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 248 PC: 21  Z_FLAG:   0 
+  	TICK: 274 PC: 21  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 249 PC: 21  Z_FLAG:   0 
+  	TICK: 275 PC: 21  Z_FLAG:   0 
   	r0: 9 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 250 PC: 21  Z_FLAG:   0 
+  	TICK: 276 PC: 21  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 251 PC: 22  Z_FLAG:   0 
+  	TICK: 277 PC: 22  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 252 PC: 22  Z_FLAG:   0 
+  	TICK: 278 PC: 22  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 253 PC: 22  Z_FLAG:   0 
+  	TICK: 279 PC: 22  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 254 PC: 14  Z_FLAG:   0 
-  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
+  	TICK: 280 PC: 22  Z_FLAG:   0 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 255 PC: 14  Z_FLAG:   0 
+  	TICK: 281 PC: 14  Z_FLAG:   0 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 282 PC: 14  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 256 PC: 23  Z_FLAG:   0 
+  	TICK: 283 PC: 23  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 257 PC: 23  Z_FLAG:   0 
+  	TICK: 284 PC: 23  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 258 PC: 16  Z_FLAG:   0 
+  	TICK: 285 PC: 16  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 259 PC: 16  Z_FLAG:   0 
+  	TICK: 286 PC: 16  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 260 PC: 16  Z_FLAG:   0 
+  	TICK: 287 PC: 16  Z_FLAG:   0 
   	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 261 PC: 14  Z_FLAG:   0 
-  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
+  	TICK: 288 PC: 16  Z_FLAG:   0 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 262 PC: 10  Z_FLAG:   0 
-  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
+  	TICK: 289 PC: 14  Z_FLAG:   0 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 263 PC: 10  Z_FLAG:   0 
+  	TICK: 290 PC: 10  Z_FLAG:   0 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 291 PC: 10  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 264 PC: 17  Z_FLAG:   0 
+  	TICK: 292 PC: 17  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 265 PC: 17  Z_FLAG:   0 
+  	TICK: 293 PC: 17  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 266 PC: 18  Z_FLAG:   0 
+  	TICK: 294 PC: 18  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 267 PC: 18  Z_FLAG:   0 
+  	TICK: 295 PC: 18  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 268 PC: 19  Z_FLAG:   0 
+  	TICK: 296 PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 269 PC: 19  Z_FLAG:   0 
+  	TICK: 297 PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 10| ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 270 PC: 19  Z_FLAG:   0 
+  	TICK: 298 PC: 19  Z_FLAG:   0 
   	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 114| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hello wor' << 'l'
   DEBUG   machine:tick          
-  	TICK: 271 PC: 20  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 272 PC: 20  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 273 PC: 20  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 274 PC: 14  Z_FLAG:   0 
-  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 275 PC: 14  Z_FLAG:   0 
-  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 276 PC: 21  Z_FLAG:   0 
-  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 277 PC: 21  Z_FLAG:   0 
-  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 278 PC: 21  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 279 PC: 22  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 280 PC: 22  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 281 PC: 22  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 282 PC: 14  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 283 PC: 14  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 284 PC: 23  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 285 PC: 23  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 286 PC: 16  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 287 PC: 16  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 288 PC: 16  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 289 PC: 14  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 290 PC: 11  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 291 PC: 11  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 292 PC: 17  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 293 PC: 17  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 294 PC: 18  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 295 PC: 18  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 296 PC: 19  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 297 PC: 19  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:tick          
-  	TICK: 298 PC: 19  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 108| 
-   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
-  DEBUG   machine:execute_out   output: 'Hello worl' << 'd'
-  DEBUG   machine:tick          
   	TICK: 299 PC: 20  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 100| 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 300 PC: 20  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 100| 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 301 PC: 20  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 100| 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 302 PC: 14  Z_FLAG:   0 
-  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 100| 
+  	TICK: 302 PC: 20  Z_FLAG:   0 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 303 PC: 14  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 100| 
+  	r0: 108|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 304 PC: 21  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 100| 
+  	TICK: 304 PC: 14  Z_FLAG:   0 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 305 PC: 21  Z_FLAG:   0 
-  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 100| 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 101 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 306 PC: 21  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 100| 
+  	r0: 10|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 307 PC: 22  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 307 PC: 21  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 308 PC: 22  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 309 PC: 22  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 310 PC: 14  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 310 PC: 22  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 311 PC: 14  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 311 PC: 22  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 312 PC: 23  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 312 PC: 14  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 313 PC: 23  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 313 PC: 14  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 314 PC: 16  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 314 PC: 23  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 315 PC: 16  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 315 PC: 23  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 108| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
   	TICK: 316 PC: 16  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 317 PC: 16  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 318 PC: 16  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 319 PC: 16  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 320 PC: 14  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 321 PC: 11  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 322 PC: 11  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 323 PC: 17  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 324 PC: 17  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 325 PC: 18  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 326 PC: 18  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 327 PC: 19  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 328 PC: 19  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 11| ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 329 PC: 19  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 108| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:execute_out   output: 'Hello worl' << 'd'
+  DEBUG   machine:tick          
+  	TICK: 330 PC: 20  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 331 PC: 20  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 332 PC: 20  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 333 PC: 20  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 334 PC: 14  Z_FLAG:   0 
+  	r0: 100|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 335 PC: 14  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 336 PC: 21  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 337 PC: 21  Z_FLAG:   0 
+  	r0: 11|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 338 PC: 21  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 339 PC: 22  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 340 PC: 22  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 341 PC: 22  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 342 PC: 22  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 343 PC: 14  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 344 PC: 14  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 345 PC: 23  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 346 PC: 23  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 347 PC: 16  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 348 PC: 16  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 349 PC: 16  Z_FLAG:   0 
   	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 317 PC: 14  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 350 PC: 16  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 318 PC: 12  Z_FLAG:   0 
-  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
+  	TICK: 351 PC: 14  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 319 PC: 12  Z_FLAG:   0 
+  	TICK: 352 PC: 12  Z_FLAG:   0 
+  	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 353 PC: 12  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 320 PC: 17  Z_FLAG:   0 
+  	TICK: 354 PC: 17  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 321 PC: 17  Z_FLAG:   0 
+  	TICK: 355 PC: 17  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 322 PC: 18  Z_FLAG:   0 
+  	TICK: 356 PC: 18  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 323 PC: 18  Z_FLAG:   0 
+  	TICK: 357 PC: 18  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 324 PC: 19  Z_FLAG:   0 
+  	TICK: 358 PC: 19  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: jz| ipc: 16|  PC + 1 -> PC | 	[instruction: jz #18] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 325 PC: 19  Z_FLAG:   0 
+  	TICK: 359 PC: 19  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 12| ir: out| ipc: 16|  MEM[PC] -> IR | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 326 PC: 19  Z_FLAG:   0 
+  	TICK: 360 PC: 19  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 100| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:execute_out   output: 'Hello world' << '!'
   DEBUG   machine:tick          
-  	TICK: 327 PC: 20  Z_FLAG:   0 
-  	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 33| 
+  	TICK: 361 PC: 20  Z_FLAG:   0 
+  	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: out| ipc: 16|  R0 + 0 -> PORT_1; PC + 1 -> PC | 	[instruction: out #19] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 328 PC: 20  Z_FLAG:   0 
+  	TICK: 362 PC: 20  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 1 | ir: load| ipc: 16|  MEM[PC] -> IR | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 329 PC: 20  Z_FLAG:   0 
+  	TICK: 363 PC: 20  Z_FLAG:   0 
   	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  IR(OPERAND) -> AR | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 330 PC: 14  Z_FLAG:   0 
-  	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
+  	TICK: 364 PC: 20  Z_FLAG:   0 
+  	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  PC -> IPC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 331 PC: 14  Z_FLAG:   0 
+  	TICK: 365 PC: 14  Z_FLAG:   0 
+  	r0: 33|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  0 + AR -> PC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 366 PC: 14  Z_FLAG:   0 
   	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  MEM[PC] -> R0 | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 332 PC: 21  Z_FLAG:   0 
+  	TICK: 367 PC: 21  Z_FLAG:   0 
   	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 20|  1 + IPC -> PC | 	[instruction: load #20] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 333 PC: 21  Z_FLAG:   0 
+  	TICK: 368 PC: 21  Z_FLAG:   0 
   	r0: 12|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  MEM[PC] -> IR | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 334 PC: 21  Z_FLAG:   0 
+  	TICK: 369 PC: 21  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  1 + R0 -> R0 | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 335 PC: 22  Z_FLAG:   0 
+  	TICK: 370 PC: 22  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: inc| ipc: 20|  PC + 1 -> PC | 	[instruction: inc #21] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 336 PC: 22  Z_FLAG:   0 
+  	TICK: 371 PC: 22  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  MEM[PC] -> IR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 337 PC: 22  Z_FLAG:   0 
+  	TICK: 372 PC: 22  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 20|  IR(OPERAND) -> AR | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 338 PC: 14  Z_FLAG:   0 
-  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC; 0 + AR -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
+  	TICK: 373 PC: 22  Z_FLAG:   0 
+  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  PC -> IPC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 339 PC: 14  Z_FLAG:   0 
+  	TICK: 374 PC: 14  Z_FLAG:   0 
+  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  0 + AR -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 375 PC: 14  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  R0 -> MEM[PC] | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 340 PC: 23  Z_FLAG:   0 
+  	TICK: 376 PC: 23  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: store| ipc: 22|  1 + IPC -> PC | 	[instruction: store #22] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 341 PC: 23  Z_FLAG:   0 
+  	TICK: 377 PC: 23  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  MEM[PC] -> IR | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 342 PC: 16  Z_FLAG:   0 
+  	TICK: 378 PC: 16  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: jmp| ipc: 22|  IR(OPERAND) -> PC | 	[instruction: jmp #23] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 343 PC: 16  Z_FLAG:   0 
+  	TICK: 379 PC: 16  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  MEM[PC] -> IR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 344 PC: 16  Z_FLAG:   0 
+  	TICK: 380 PC: 16  Z_FLAG:   0 
   	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 22|  IR(OPERAND) -> AR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 345 PC: 14  Z_FLAG:   0 
-  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
+  	TICK: 381 PC: 16  Z_FLAG:   0 
+  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 14| ir: load| ipc: 16|  PC -> IPC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 346 PC: 13  Z_FLAG:   0 
-  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: load| ipc: 16|  MEM[PC] - > AR; 0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
+  	TICK: 382 PC: 14  Z_FLAG:   0 
+  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: load| ipc: 16|  0 + AR -> PC; MEM[PC] - > AR | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 347 PC: 13  Z_FLAG:   0 
+  	TICK: 383 PC: 13  Z_FLAG:   0 
+  	r0: 13|  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: load| ipc: 16|  0 + AR -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
+   	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
+  DEBUG   machine:tick          
+  	TICK: 384 PC: 13  Z_FLAG:   0 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: load| ipc: 16|  MEM[PC] -> R0 | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 348 PC: 17  Z_FLAG:   0 
+  	TICK: 385 PC: 17  Z_FLAG:   0 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: load| ipc: 16|  1 + IPC -> PC | 	[instruction: load #16] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 349 PC: 17  Z_FLAG:   0 
+  	TICK: 386 PC: 17  Z_FLAG:   0 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: cmp| ipc: 16|  MEM[PC] -> IR | 	[instruction: cmp #17] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 350 PC: 18  Z_FLAG:   1 
+  	TICK: 387 PC: 18  Z_FLAG:   1 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: cmp| ipc: 16|  R0 - R3 --> ZERO FLAG; PC + 1 -> PC | 	[instruction: cmp #17] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 351 PC: 18  Z_FLAG:   1 
+  	TICK: 388 PC: 18  Z_FLAG:   1 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: jz| ipc: 16|  MEM[PC] -> IR | 	[instruction: jz #18] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 352 PC: 24  Z_FLAG:   1 
+  	TICK: 389 PC: 24  Z_FLAG:   1 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: jz| ipc: 16|  IR(OPERAND) -> PC | 	[instruction: jz #18] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
   DEBUG   machine:tick          
-  	TICK: 353 PC: 24  Z_FLAG:   1 
+  	TICK: 390 PC: 24  Z_FLAG:   1 
   	r0: 0 |  r1: 0 |  r2: 0 | r3: 0 | r4: 0 | r5: 0 | r6: 0 | r7: 0 | r8: 0 | r9: 0 | r10: 0 | r11: 0 | r12: 0 | ar: 13| ir: halt| ipc: 16|  MEM[PC] -> IR | 	[instruction: halt #24] |PORT_0: 120 |PORT_1: 33| 
    	CONTROLLER_INT: True | INT_VECTOR_ADDR: 1048566 | INT_ENABLED: False | INT_HANDLING: False | 
