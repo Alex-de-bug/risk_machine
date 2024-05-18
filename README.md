@@ -92,7 +92,7 @@ todo
 ```text
            memory
 +----------------------------+
-| 00 : jmp start address (k) |
+| 00 : jmp k                 |
 | 01 : data (for example)    |
 | 02 :      ...              | 
 |           ...              | 
