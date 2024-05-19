@@ -1,11 +1,4 @@
 [{"opcode": "jmp", "op": 1, "addrType": 0, "term": [0, ".text"]},
- {"opcode": "ei", "addrType": 3, "term": [1, ""]},
- {"opcode": "jmp", "op": 2, "addrType": 0, "term": [2, ".loop"]},
- {"opcode": "halt", "addrType": 3, "term": [3, ""]},
- {"opcode": "in", "reg": 1, "op": 0, "addrType": 4, "term": [4, ""]},
- {"opcode": "move", "reg": 2, "op": 48, "addrType": 0, "term": [5, ""]},
- {"opcode": "cmp", "op1": 1, "op2": 2, "addrType": 2, "term": [6, ""]},
- {"opcode": "jz", "op": 3, "addrType": 0, "term": [7, ".end"]},
- {"opcode": "out", "reg": 1, "op": 1, "addrType": 4, "term": [8, ""]},
- {"opcode": "iret", "addrType": 3, "term": [9, ""]},
- {"int1": 4}]
+ {"opcode": "add", "op1": 0, "op2": 1, "op3": 2, "addrType": 2, "term": [1, ""]},
+ {"opcode": "halt", "addrType": 3, "term": [2, ""]},
+ {"int1": "-"}]
