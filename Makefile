@@ -1,10 +1,13 @@
-all: format lint test
+all: format lint lint_md test
 
 format:
 	poetry run ruff format .
 
 lint:
 	poetry run ruff check .
+
+lint_md:
+	markdownlint "**/*.md" -c .markdownlint.yml
 
 test:
 	poetry run pytest -v
